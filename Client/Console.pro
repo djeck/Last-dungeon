@@ -3,8 +3,9 @@ SOURCES += main.cpp \
     ../Communs/Param.cpp \
     ../Communs/sha512.cpp
 HEADERS += ../Communs/logger.h \
-        ../Communs/Param.h \
-        ../Communs/sha512.h
+    ../Communs/Param.h \
+    ../Communs/sha512.h \
+    ../Communs/enumTraitement.h
 LIBS += -lmysqlclient \
     -lsfml-graphics \
     -lsfml-network

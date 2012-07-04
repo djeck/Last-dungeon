@@ -86,9 +86,26 @@ namespace LD
                 @enum IPBAN : l'ip utilisée est bannie
                 @enum FAUXID : le login ou le mot de passe est faux
                 @enum BANNI : le compte du joueur a été banni
-                @param BLOQUE : le compte est bloque
-                @param DEJACO : le joueur est déjà connecté */
+                @enum BLOQUE : le compte est bloque
+                @enum DEJACO : le joueur est déjà connecté */
             enum{IPBAN, FAUXID, BANNI, BLOQUE, DEJACO};
+        }
+
+        /** @brief Défini les constantes relatives à l'administration */
+        namespace ADMIN_C
+        {
+        /** @brief Défini les constantess relatives à l'administration
+             @enum ADDJOUEUR : Ajouter un joueur
+             @enum MODIFIER_DROITS : Donner/Retirer des droits
+             @enum STOP_SERVEUR : arrêter/redémarer le serveur
+             @enum SHUTDOWN : fermer le programme
+             @enum BANNIR : bannir un compte ou une ip
+             @enum BLOQUER : bloquer un compte
+             @enum BROADCAST : envoyer un message à tous les connecté
+             @enum LOGS : Faire des opérations sur les fichiers de logs
+             */
+
+            enum{ADDJOUEUR, MODIFIER_DROITS, STOP_SERVEUR, SHUTDOWN, BANNIR, BLOQUER, BROADCAST, LOGS};
         }
     }
 
@@ -96,8 +113,33 @@ namespace LD
     namespace DROITS
     {
         /** @brief Défini le numéro de bit associé au droit
-            @enum ACCES : droit de se connecter au panneau d'administration */
-        enum{ACCES};
+            @enum ACCES : droit de se connecter au panneau d'administration
+            @enum SUPERADMIN : ce droit est le plus important, il permet d'ajouter et de retirer des droits, d'arrêter le serveur
+            @enum MODERATEUR : permet de bannir ou de bloquer un compte ou une ip
+            @enum TECHNICIEN : permet de récupérer les fichiers de logs et de fermer le serveur au public
+            @enum ANNONCE : permet d'envoyer des messages à tous les connectés
+            @enum AJOUTER_JOUEUR : permet d'ajouter un joueur sans droits */
+        enum{ACCES, SUPERADMIN, MODERATEUR, TECHNICIEN, ANNONCE, AJOUTER_JOUEUR};
+    }
+
+
+    /** @brief Namespace relative aux options de connexions joueurs */
+    namespace CO_JOUEURS
+    {
+        /** @brief nombre de thread consommateur pour traiter les instructions des joueurs */
+        extern const int NB_THREAD;
+        /** @brief numéro de port de connexion des joueurs */
+        extern const unsigned int PORT;
+
+        /** @brief Temps d'attente en secondes après X echecs */
+        extern const unsigned int ATTENTE;
+
+        /** @brief Nombres d'echecs de connexion consécutifs après lequel le compte est bloqué */
+        extern const int NB_MAX_ECHEC;
+
+        /** @brief Message affiché lors du blocage de compte */
+        extern std::string MSG_BLOQUE;
+
     }
 }
 

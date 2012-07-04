@@ -63,4 +63,14 @@ namespace LD
         extern const char SEL = 1<<7;
     }
 
+    namespace CO_JOUEURS
+    {
+        extern const int NB_THREAD = 5;
+        extern const unsigned int PORT = 1202;
+        extern const unsigned int ATTENTE = 20;
+        extern const int NB_MAX_ECHEC = 2;
+        extern std::string MSG_BLOQUE = "Bien fait!";
+
+    }
+
 }

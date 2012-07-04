@@ -2,7 +2,7 @@
 #define REQUETEBDD_H
 
 #include "bdd.h"
-#include "InfoJoueur.h"
+#include "../Serveur/InterfaceReseau/infojoueur.h"
 
 namespace LD
 {
@@ -11,9 +11,8 @@ namespace LD
     {
         /** @brief Retourne le joueur correspondant au login envoyé en argument
             @param std::string login : login du joueur
-            @param InfoJoueur & joueur : structure contenant toutes les informations sur le joueur contenu dans la BDD
-            @param bool : retourne true s'il a trouvé un joueur false sinon  */
-        bool getJoueur(std::string login, InfoJoueur & joueur);
+            @param InfoJoueur * : retourne un pointeur sur les informations concernant le joueur */
+        InfoJoueur * getJoueur(std::string login);
 
         /** @brief Retourne un pointeur vers un string expliquant pourquoi l'ip a été bannie
           Retourne NULL si l'ip n'est pas bannie

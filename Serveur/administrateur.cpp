@@ -1,7 +1,7 @@
 #include "administrateur.h"
-#include "../../Console/Console/logger.h"
-#include "../../Console/Console/requetebdd.h"
-#include "../../Console/Console/Param.h"
+#include "../Communs/logger.h"
+#include "../Communs/requetebdd.h"
+#include "../Communs/Param.h"
 #include <string>
 #include <iomanip>
 #include "../Communs/sha512.h"
@@ -128,9 +128,7 @@ namespace LD
             switch(typeTraitement)
             {
                case TRAITEMENT_PARAM::ADMINISTRATION :
-                    general->running = false;
-                break;
-                case 1 :
+                    return traitementAdministratif(paquet);
                 break;
                 default :
                         //TODO blocage du compte
@@ -192,7 +190,11 @@ namespace LD
             socket->send(paquet);
             return false;
           }
-        if(! (joueur.droits & (1<<DROITS::ACCES) ) )
+
+
+
+
+        if( !(Infojoueur->droits & (1<<DROITS::ACCES) ) )
           {
             RequeteBDD::setBanni(joueur.id, "Tentative de hack du serveur");
             sf::Packet paquet;
@@ -217,4 +219,59 @@ namespace LD
         connecte = true;
         return false;
     }
+
+
+    bool Administrateur::AdminCo::traitementAdministratif(sf::Packet & paquet)
+    {
+        //TODO vérification admin ?
+        sf::Uint16 typeTraitement;
+        paquet >> typeTraitement;
+        switch (typeTraitement)
+        {
+        case TRAITEMENT_PARAM::ADMIN_C::ADDJOUEUR :
+            // vérification droits
+            //requete
+        break;
+        case TRAITEMENT_PARAM::ADMIN_C::BANNIR :
+            // vérification droits
+            //requete
+        break;
+        case TRAITEMENT_PARAM::ADMIN_C::BLOQUER :
+            // vérification droits
+            //requete
+        break;
+        case TRAITEMENT_PARAM::ADMIN_C::BROADCAST :
+            // vérification droits
+            //requete
+        break;
+        case TRAITEMENT_PARAM::ADMIN_C::LOGS :
+            // vérification droits
+            //requete
+        break;
+        case TRAITEMENT_PARAM::ADMIN_C::MODIFIER_DROITS :
+            // vérification droits
+            //requete
+        break;
+        case TRAITEMENT_PARAM::ADMIN_C::SHUTDOWN :
+            // vérification droits
+            //requete
+        break;
+        case TRAITEMENT_PARAM::ADMIN_C::STOP_SERVEUR :
+            // vérification droits
+            //requete
+        break;
+        default :
+                //TODO bannir ?
+                return true;
+        break;
+        }
+    }
 }
+/**  @enum ADDJOUEUR : Ajouter un joueur
+             @enum MODIFIER_DROITS : Donner/Retirer des droits
+             @enum STOP_SERVEUR : arrêter/redémarer le serveur
+             @enum SHUTDOWN : fermer le programme
+             @enum BANNIR : bannir un compte ou une ip
+             @enum BLOQUER : bloquer un compte
+             @enum BROADCAST : envoyer un message à tous les connecté
+             @enum LOGS : Faire des opérations sur les fichiers de logs*/

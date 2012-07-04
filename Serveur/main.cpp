@@ -9,19 +9,23 @@
   Pour plus de détails, lisez le README présent à la racine du dépôt github : https://github.com/Neckara/Projet
   */
 
+#include <SFML/Network.hpp>
+
 int main(void)
 {
+    sf::Mutex x;
+    for(int i=0; i != 10; ++i)
+        x.lock();/*
     try
     {
         LD::Serveur serveur;
-        serveur.start();
+        serveur.startAdmin();
     }
     catch(const std::string & e)
     {
         std::cout << e << std::endl;
         LD::Logger::closeLog();
-    }
-
+    }*/
     return 0;
 }
 

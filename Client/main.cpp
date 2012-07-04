@@ -12,6 +12,7 @@ Pour plus de détails, référez-vous au README se trouvant à la racine du dép
 #include "../Communs/logger.h"
 #include <SFML/Network.hpp>
 #include "../Communs/Param.h"
+#include "../Communs/enumTraitement.h"
 
 
 /** @brief Traite le paquet reçu côté client */
@@ -20,12 +21,32 @@ void traitement(sf::Packet & paquet);
 /** @brief Traite le paquet reçu côté client si celui-ci traite de la connexion */
 void traitement_connexion(sf::Packet & paquet);
 
+/** @brief Stocke les informations joueurs utiles */
+class Joueur;
+
+/** @brief Paramètres nécessaire au traitement des instructions reçues du serveur */
+struct Param
+{
+    Param(sf::TcpSocket & socket) : socket(socket){}
+    sf::TcpSocket &socket;
+};
+
+/** @brief Fonction de traitement client */
+typedef bool (*FctTraitement)(sf::Packet &, Param &);
+
+bool deco(sf::Packet &, Param &);
+
+
+/** @brief liste des fonctions de traitement client */
+extern const FctTraitement LISTE_FCT[] = {&deco};
+
 #include "../../Serveur/Serveur/sha512.h"
 int main(void)
 {
      sf::TcpSocket socket;
-     socket.connect("127.0.0.1", LD::ADMINISTRATEUR_PARAM::PORT);
-
+     socket.connect("127.0.0.1", LD::CO_JOUEURS::PORT);
+     Param param(socket);
+/*
      // Send a message to the connected host
      sf::Packet packet;
      std::cout << "Administrateur veuillez vous identifier" << std::endl;
@@ -40,13 +61,17 @@ int main(void)
      {
          packet << hash[i];
      }
-     socket.send(packet);
-
-
+     socket.send(packet);*/
+     sf::Packet paquet;
      sf::SocketSelector selector;
      selector.add(socket);
 
-     bool running;
+
+     paquet << (LD::TypeInstruction)0;
+     socket.send(paquet);
+     std::cout << "paquet envoyé" << std::endl;
+
+     bool running = false;
 
      while(running)
      {
@@ -56,13 +81,22 @@ int main(void)
              sf::Packet packet;
              if(socket.receive(packet) == sf::Socket::Done)
              {
-                 traitement(packet);
+                 LD::TypeInstruction type;
+                 packet >> type;
+                 if(type > LD::TRAIT_CLIENT::FIN)
+                     running = false;
+                 if(LISTE_FCT[type](packet, param) )
+                     running = false;
+                 std::cout << "paquet reçu" << std::endl;
              }
              else
                  running = false;
          }
          else running = false;
     }
+     std::cout << "!!" << std::endl;
+    socket.disconnect();
+    selector.remove(socket);
     return 0;
 }
 
@@ -134,4 +168,10 @@ void traitement_connexion(sf::Packet & paquet)
         break;
     }
 
+}
+
+
+bool deco(sf::Packet &, Param &)
+{
+    return true;
 }

@@ -76,15 +76,15 @@
   <valuemap type="QVariantMap">
    <value key="ProjectExplorer.BuildConfiguration.DisplayName" type="QString">Debug</value>
    <valuelist key="abstractProcess.Environment" type="QVariantList">
-    <value type="QString">DBUS_SESSION_BUS_ADDRESS=unix:abstract=/tmp/dbus-KGRoNIEuhG,guid=78ef4c5943d4fd144a20240e00000024</value>
+    <value type="QString">DBUS_SESSION_BUS_ADDRESS=unix:abstract=/tmp/dbus-RjXiWER1Gj,guid=92cb28fb5491ed88486b0a3200000025</value>
     <value type="QString">DESKTOP_SESSION=default</value>
     <value type="QString">DISPLAY=:0.0</value>
     <value type="QString">GDMSESSION=default</value>
     <value type="QString">GDM_KEYBOARD_LAYOUT=fr	latin9</value>
     <value type="QString">GDM_LANG=fr_FR.UTF-8</value>
     <value type="QString">GNOME_DESKTOP_SESSION_ID=this-is-deprecated</value>
-    <value type="QString">GNOME_KEYRING_CONTROL=/tmp/keyring-419rOa</value>
-    <value type="QString">GPG_AGENT_INFO=/tmp/seahorse-y3YNsH/S.gpg-agent:2479:1</value>
+    <value type="QString">GNOME_KEYRING_CONTROL=/tmp/keyring-IAtcnH</value>
+    <value type="QString">GPG_AGENT_INFO=/tmp/seahorse-dpBjYr/S.gpg-agent:2445:1</value>
     <value type="QString">GTK_MODULES=canberra-gtk-module</value>
     <value type="QString">GTK_RC_FILES=/etc/gtk/gtkrc:/home/neckara/.gtkrc-1.2-gnome2</value>
     <value type="QString">HOME=/home/neckara</value>
@@ -95,16 +95,16 @@
     <value type="QString">PATH=/usr/bin:/usr/local/bin:/usr/bin:/bin:/usr/local/games:/usr/games</value>
     <value type="QString">PWD=/home/neckara</value>
     <value type="QString">QTDIR=/usr/share/qt4</value>
-    <value type="QString">SESSION_MANAGER=local/NeckDebian:@/tmp/.ICE-unix/2431,unix/NeckDebian:/tmp/.ICE-unix/2431</value>
+    <value type="QString">SESSION_MANAGER=local/NeckDebian:@/tmp/.ICE-unix/2397,unix/NeckDebian:/tmp/.ICE-unix/2397</value>
     <value type="QString">SHELL=/bin/bash</value>
-    <value type="QString">SSH_AGENT_PID=2465</value>
-    <value type="QString">SSH_AUTH_SOCK=/tmp/keyring-419rOa/ssh</value>
+    <value type="QString">SSH_AGENT_PID=2431</value>
+    <value type="QString">SSH_AUTH_SOCK=/tmp/keyring-IAtcnH/ssh</value>
     <value type="QString">USER=neckara</value>
     <value type="QString">USERNAME=neckara</value>
     <value type="QString">WINDOWPATH=7</value>
-    <value type="QString">XAUTHORITY=/var/run/gdm3/auth-for-neckara-vTDxX7/database</value>
+    <value type="QString">XAUTHORITY=/var/run/gdm3/auth-for-neckara-fS7SGP/database</value>
     <value type="QString">XDG_DATA_DIRS=/usr/share/gnome:/usr/share/gdm/:/usr/local/share/:/usr/share/</value>
-    <value type="QString">XDG_SESSION_COOKIE=5e467b70b6d69774799f37ba0000000c-1340280702.564772-922363694</value>
+    <value type="QString">XDG_SESSION_COOKIE=5e467b70b6d69774799f37ba0000000c-1341070283.404277-958288589</value>
    </valuelist>
    <valuelist key="abstractProcess.arguments" type="QVariantList">
     <value type="QString">/media/Acer/Users/Neckara/Desktop/Donnees/Projet/Sources/Client/Console.pro</value>
@@ -123,15 +123,15 @@
   <valuemap type="QVariantMap">
    <value key="ProjectExplorer.BuildConfiguration.DisplayName" type="QString">Debug</value>
    <valuelist key="abstractProcess.Environment" type="QVariantList">
-    <value type="QString">DBUS_SESSION_BUS_ADDRESS=unix:abstract=/tmp/dbus-KGRoNIEuhG,guid=78ef4c5943d4fd144a20240e00000024</value>
+    <value type="QString">DBUS_SESSION_BUS_ADDRESS=unix:abstract=/tmp/dbus-RjXiWER1Gj,guid=92cb28fb5491ed88486b0a3200000025</value>
     <value type="QString">DESKTOP_SESSION=default</value>
     <value type="QString">DISPLAY=:0.0</value>
     <value type="QString">GDMSESSION=default</value>
     <value type="QString">GDM_KEYBOARD_LAYOUT=fr	latin9</value>
     <value type="QString">GDM_LANG=fr_FR.UTF-8</value>
     <value type="QString">GNOME_DESKTOP_SESSION_ID=this-is-deprecated</value>
-    <value type="QString">GNOME_KEYRING_CONTROL=/tmp/keyring-419rOa</value>
-    <value type="QString">GPG_AGENT_INFO=/tmp/seahorse-y3YNsH/S.gpg-agent:2479:1</value>
+    <value type="QString">GNOME_KEYRING_CONTROL=/tmp/keyring-IAtcnH</value>
+    <value type="QString">GPG_AGENT_INFO=/tmp/seahorse-dpBjYr/S.gpg-agent:2445:1</value>
     <value type="QString">GTK_MODULES=canberra-gtk-module</value>
     <value type="QString">GTK_RC_FILES=/etc/gtk/gtkrc:/home/neckara/.gtkrc-1.2-gnome2</value>
     <value type="QString">HOME=/home/neckara</value>
@@ -142,16 +142,16 @@
     <value type="QString">PATH=/usr/bin:/usr/local/bin:/usr/bin:/bin:/usr/local/games:/usr/games</value>
     <value type="QString">PWD=/home/neckara</value>
     <value type="QString">QTDIR=/usr/share/qt4</value>
-    <value type="QString">SESSION_MANAGER=local/NeckDebian:@/tmp/.ICE-unix/2431,unix/NeckDebian:/tmp/.ICE-unix/2431</value>
+    <value type="QString">SESSION_MANAGER=local/NeckDebian:@/tmp/.ICE-unix/2397,unix/NeckDebian:/tmp/.ICE-unix/2397</value>
     <value type="QString">SHELL=/bin/bash</value>
-    <value type="QString">SSH_AGENT_PID=2465</value>
-    <value type="QString">SSH_AUTH_SOCK=/tmp/keyring-419rOa/ssh</value>
+    <value type="QString">SSH_AGENT_PID=2431</value>
+    <value type="QString">SSH_AUTH_SOCK=/tmp/keyring-IAtcnH/ssh</value>
     <value type="QString">USER=neckara</value>
     <value type="QString">USERNAME=neckara</value>
     <value type="QString">WINDOWPATH=7</value>
-    <value type="QString">XAUTHORITY=/var/run/gdm3/auth-for-neckara-vTDxX7/database</value>
+    <value type="QString">XAUTHORITY=/var/run/gdm3/auth-for-neckara-fS7SGP/database</value>
     <value type="QString">XDG_DATA_DIRS=/usr/share/gnome:/usr/share/gdm/:/usr/local/share/:/usr/share/</value>
-    <value type="QString">XDG_SESSION_COOKIE=5e467b70b6d69774799f37ba0000000c-1340280702.564772-922363694</value>
+    <value type="QString">XDG_SESSION_COOKIE=5e467b70b6d69774799f37ba0000000c-1341070283.404277-958288589</value>
    </valuelist>
    <value key="abstractProcess.IgnoreReturnValue" type="bool">false</value>
    <valuelist key="abstractProcess.arguments" type="QVariantList">
@@ -169,15 +169,15 @@
   <valuemap type="QVariantMap">
    <value key="ProjectExplorer.BuildConfiguration.DisplayName" type="QString">Debug</value>
    <valuelist key="abstractProcess.Environment" type="QVariantList">
-    <value type="QString">DBUS_SESSION_BUS_ADDRESS=unix:abstract=/tmp/dbus-iF7o7WHa7x,guid=f861380e55652264a8584dd500000025</value>
+    <value type="QString">DBUS_SESSION_BUS_ADDRESS=unix:abstract=/tmp/dbus-bOHrUE3Se4,guid=f397a8fe6d4a7191c55090b500000026</value>
     <value type="QString">DESKTOP_SESSION=default</value>
     <value type="QString">DISPLAY=:0.0</value>
     <value type="QString">GDMSESSION=default</value>
     <value type="QString">GDM_KEYBOARD_LAYOUT=fr	latin9</value>
     <value type="QString">GDM_LANG=fr_FR.UTF-8</value>
     <value type="QString">GNOME_DESKTOP_SESSION_ID=this-is-deprecated</value>
-    <value type="QString">GNOME_KEYRING_CONTROL=/tmp/keyring-vCtuAm</value>
-    <value type="QString">GPG_AGENT_INFO=/tmp/seahorse-uoVSvb/S.gpg-agent:2395:1</value>
+    <value type="QString">GNOME_KEYRING_CONTROL=/tmp/keyring-2ge0Qd</value>
+    <value type="QString">GPG_AGENT_INFO=/tmp/seahorse-oFR4y8/S.gpg-agent:2545:1</value>
     <value type="QString">GTK_MODULES=canberra-gtk-module</value>
     <value type="QString">GTK_RC_FILES=/etc/gtk/gtkrc:/home/neckara/.gtkrc-1.2-gnome2</value>
     <value type="QString">HOME=/home/neckara</value>
@@ -188,16 +188,16 @@
     <value type="QString">PATH=/usr/bin:/usr/local/bin:/usr/bin:/bin:/usr/local/games:/usr/games</value>
     <value type="QString">PWD=/home/neckara</value>
     <value type="QString">QTDIR=/usr/share/qt4</value>
-    <value type="QString">SESSION_MANAGER=local/NeckDebian:@/tmp/.ICE-unix/2347,unix/NeckDebian:/tmp/.ICE-unix/2347</value>
+    <value type="QString">SESSION_MANAGER=local/NeckDebian:@/tmp/.ICE-unix/2497,unix/NeckDebian:/tmp/.ICE-unix/2497</value>
     <value type="QString">SHELL=/bin/bash</value>
-    <value type="QString">SSH_AGENT_PID=2381</value>
-    <value type="QString">SSH_AUTH_SOCK=/tmp/keyring-vCtuAm/ssh</value>
+    <value type="QString">SSH_AGENT_PID=2531</value>
+    <value type="QString">SSH_AUTH_SOCK=/tmp/keyring-2ge0Qd/ssh</value>
     <value type="QString">USER=neckara</value>
     <value type="QString">USERNAME=neckara</value>
     <value type="QString">WINDOWPATH=7</value>
-    <value type="QString">XAUTHORITY=/var/run/gdm3/auth-for-neckara-xKtUmS/database</value>
+    <value type="QString">XAUTHORITY=/var/run/gdm3/auth-for-neckara-IdoZzE/database</value>
     <value type="QString">XDG_DATA_DIRS=/usr/share/gnome:/usr/share/gdm/:/usr/local/share/:/usr/share/</value>
-    <value type="QString">XDG_SESSION_COOKIE=5e467b70b6d69774799f37ba0000000c-1339160266.60049-335910541</value>
+    <value type="QString">XDG_SESSION_COOKIE=5e467b70b6d69774799f37ba0000000c-1340612452.761862-1108102666</value>
    </valuelist>
    <value key="abstractProcess.IgnoreReturnValue" type="bool">true</value>
    <valuelist key="abstractProcess.arguments" type="QVariantList">
@@ -206,7 +206,7 @@
    </valuelist>
    <value key="abstractProcess.command" type="QString">/usr/bin/make</value>
    <value key="abstractProcess.enabled" type="bool">true</value>
-   <value key="abstractProcess.workingDirectory" type="QString">/media/Acer/Users/Neckara/Desktop/Donnees/Projet/Console/Console</value>
+   <value key="abstractProcess.workingDirectory" type="QString">/media/Acer/Users/Neckara/Desktop/Donnees/Projet/Sources/Client</value>
    <value key="cleanConfig" type="bool">true</value>
    <valuelist key="makeargs" type="QVariantList">
     <value type="QString">clean</value>

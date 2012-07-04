@@ -3,7 +3,9 @@ ALL RIGHTS RESERVED.
 Pour toute réutilisation des sources, veuillez nous contacter au préalable.
 
 Toute la documentation doxygen est disponible ici : http://jsz.kegtux.org/doc-sources/
-La présentation du projet est encore en cours d'écriture.
+La documentation date du 21/06/2012, elles ne sont pas à jour.
+
+La présentation du projet est encore en cours d'écriture, notre secrétaire travaille dessus.
 N.B : Le site jsz.kegtux.org est en cours de création, il n'est pas encore présentable au public.
 
 
@@ -12,19 +14,6 @@ Pour toute recrutement, remarques, questions ou autre, vous pouvez contacter Nec
 - msn : neckara@hotmail.fr
 - mail : neckara.LastDungeon@gmail.com
 Nous sommes ouvert à toute critique ou remarques qui pourraient nous aider à nous améliorer.
-
-
-Nous recherchons actuellement :
-
-- 1 secrétaire pour :
-	o transmettre la newletter par mail et sur 2 forums (site du zéro et developpez) ;
-	o si possible écrire la newsletter ;
-	o corriger et rectifier les commentaires des sources avant de générer et de mettre en ligne la documentation ;
-	o résumer et mettre en ligne les réunions hebdomadaires ;
-	o demander des nouvelles aux membres n'en donnant plus ;
-	o apporter le café au reste de l'équipe ;-)
-
-- 1 programmeur C++ sachant utiliser la SFML2.0 pour commencer à mettre en place l'interface graphique finale.
 
 
 Les sources sont divisées en 5 parties :
@@ -37,6 +26,10 @@ Les sources sont divisées en 5 parties :
 
 -------------------------------------   NOTES GENERALES   ----------------------------------------------------------------------
 
+04/07/2012 :
+Travail sur la connexion.
+Nous nous pencherons très bientôt sur la réalisation d'un gestionnaire de mises à jours et nous en profiterons pour grandement améliorer la précédante classe bouton.
+
 21/06/2012 :
 Seules les parties "serveur", "client" et "commune" sont définitives.
 Une fois le Go intégré au client et au serveur, les partie "go" et "interface graphique go" disparaîtrons.
@@ -46,6 +39,11 @@ Une fois le serveur "fini", nous commencerons à mettre puis à corriger/optimis
 
 
 -------------------------------------   NOTES SERVEUR   ------------------------------------------------------------------------
+
+04/07/2012 :
+La connexion des joueurs est finie mais pas encore testée.
+Il manque la déconnexion propre des joueurs ainsi que l'amélioration de la connexion administrateur en suivant le modèle de la connexion des joueurs.
+Il ne manquera plus que l'implémentation de quelques tâches administratives.
 
 21/06/2012 :
 Un thread administrateur est dédiés aux connexions des administrateurs et des tâches administratives.
@@ -89,6 +87,9 @@ Développement avec une interface de console, ne sert qu'aux tests des connexion
 
 -------------------------------------   NOTES PARTIE COMMUNE   -----------------------------------------------------------------
 
+04/07/2012 :
+- Amélioration des énumérations pour définir les traitements.
+
 21/06/2012 :
 
 Fait :
@@ -98,6 +99,10 @@ Fait :
 - Fichiers de logs.
 
 -------------------------------------   NOTES GO   -----------------------------------------------------------------------------
+
+04/07/2012 :
+Le programmeur ayant les sources ne donne plus de nouvelles depuis quelque temps.
+Pour éviter que ceci ne se reproduise, nous rendons obligatoire la création d'un fork du projet à chaque programmeur de l'équipe.
 
 21/06/2012 :
 
