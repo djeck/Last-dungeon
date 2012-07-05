@@ -58,6 +58,7 @@ namespace LD
                 return;
             }
             std::string raison;
+            std::string ip = client->getRemoteAddress().toString();
             if(RequeteBDD::isBanni(ip, raison) )
             {
                 sf::Packet paquet;
@@ -86,7 +87,7 @@ namespace LD
             startEcoute(listener, selector);
             while ( (! closeServeurClient) && running)
             {
-                if ( selector.wait(sf::seconds(15) ) ) //TODO mettre à la fin
+                if ( selector.wait(sf::seconds(15) ) ) //TODO corriger
                 {
                     if (selector.isReady(listener) )
                     {
@@ -102,14 +103,17 @@ namespace LD
                             if (selector.isReady(client))
                             {
                                 // The client has sent some data, we can receive it
-                                sf::Packet packet;
-                                if (client.receive(packet) != sf::Socket::Done)
+                                sf::Packet * packet = new sf::Packet;
+                                int i;
+                                if ( (i = client.receive(*packet) ) != sf::Socket::Done)
                                 {
-                                    //TODO
-                                    packet.clear();
-                                    packet << 0; //déconnexion
+                                    std::cout << "Erreur socket" << std::endl;
+                                    selector.remove(client);
+                                    /* TODO instruction de déconnexion à envoyer */
+                                    /* TODO fonction deconnect dans le listenenr */
                                 }
-                                listeInstruction.push_pack(packet, **it);
+                                else
+                                    listeInstruction.push_pack(*packet, **it);
                             }
                         }
                         verrouListener.unlock();
@@ -149,14 +153,14 @@ namespace LD
         std::list<Joueur *>::const_iterator const fin = listeSocket.end();
 
         for( ; p != fin ; ++p)
-        if(*p == &j)
-        {
-            (*p)->socket.disconnect();
-            Joueur::deleteJoueur(**p);
-            selector->remove( (*p)->socket);
-            listeSocket.erase(p);
-            break;
-        }
+            if(*p == &j)
+            {
+                (*p)->socket.disconnect();
+                Joueur::deleteJoueur(**p);
+                selector->remove( (*p)->socket);
+                listeSocket.erase(p);
+                break;
+            }
 
         verrouListener.unlock();
     }

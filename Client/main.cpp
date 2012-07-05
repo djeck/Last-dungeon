@@ -36,138 +36,108 @@ typedef bool (*FctTraitement)(sf::Packet &, Param &);
 
 bool deco(sf::Packet &, Param &);
 
+/** @brief Le client reçoit un message selon lequel son ip aurait été bannie
+@param sf::Packet & paquet: paquet reçu
+@param Param & : paramètres
+@bool : retourne true*/
+bool ipBan(sf::Packet & paquet, Param &);
+
+/** @brief Le client a entré un identifiant ou un mot de passe invalide
+@param sf::Packet & paquet: paquet reçu
+@param Param & : paramètres
+@bool : retourne true*/
+bool fauxId(sf::Packet & paquet, Param &);
+
+/** @brief Le client reçoit un message selon lequel son compte aurait été bloque
+@param sf::Packet & paquet: paquet reçu
+@param Param & : paramètres
+@bool : retourne true*/
+bool bloque(sf::Packet & paquet, Param &);
+
+/** @brief Le client reçoit un message selon lequel son compte aurait été banni
+@param sf::Packet & paquet: paquet reçu
+@param Param & : paramètres
+@bool : retourne true*/
+bool banni(sf::Packet & paquet, Param &);
+
+/** @brief Le port utilisé n'est pas le bon (admin)
+@param sf::Packet & paquet: paquet reçu
+@param Param & : paramètres
+@bool : retourne true*/
+bool badPort(sf::Packet & paquet, Param &);
+
+/** @brief Le client est déjà connecté
+@param sf::Packet & paquet: paquet reçu
+@param Param & : paramètres
+@bool : retourne true*/
+bool dejaCo(sf::Packet & paquet, Param &);
+
+/** @brief La connexion a réussie
+@param sf::Packet & paquet: paquet reçu
+@param Param & : paramètres
+@bool : retourne true*/
+bool coReussie(sf::Packet & paquet, Param &);
 
 /** @brief liste des fonctions de traitement client */
-extern const FctTraitement LISTE_FCT[] = {&deco};
+extern const FctTraitement LISTE_FCT[] = {&deco, NULL, &ipBan, &fauxId, &bloque, &banni, &badPort, &dejaCo, &coReussie};
 
 #include "../../Serveur/Serveur/sha512.h"
 int main(void)
 {
+    // Send a message to the connected host
+    sf::Packet packet;
+    std::cout << "Administrateur veuillez vous identifier" << std::endl;
+    std::string login, password;
+    std::cin >> login;
+    std::cin.ignore();
+    std::cin >> password;
+    std::cin.ignore();
+    packet << login;
+
      sf::TcpSocket socket;
+     sf::SocketSelector selector;
+
      socket.connect("127.0.0.1", LD::CO_JOUEURS::PORT);
+     selector.add(socket);
      Param param(socket);
-/*
-     // Send a message to the connected host
-     sf::Packet packet;
-     std::cout << "Administrateur veuillez vous identifier" << std::endl;
-     std::string login, password;
-     std::cin >> login;
-     std::cin.ignore();
-     std::cin >> password;
-     std::cin.ignore();
-     packet << login;
+
      sf::Uint32 * hash = (sf::Uint32 *)LD::Sha512(password).getHash();
      for(int i = 0; i != 16; ++i)
      {
          packet << hash[i];
      }
-     socket.send(packet);*/
-     sf::Packet paquet;
-     sf::SocketSelector selector;
-     selector.add(socket);
+     socket.send(packet);
 
-
-     paquet << (LD::TypeInstruction)0;
-     socket.send(paquet);
      std::cout << "paquet envoyé" << std::endl;
 
-     bool running = false;
+     bool running = true;
 
      while(running)
      {
          selector.wait();
+         std::cout << "o" << std::endl;
          if(selector.isReady(socket))
          {
              sf::Packet packet;
              if(socket.receive(packet) == sf::Socket::Done)
              {
+                 std::cout << "paquet reçu" << std::endl;
                  LD::TypeInstruction type;
                  packet >> type;
                  if(type > LD::TRAIT_CLIENT::FIN)
                      running = false;
                  if(LISTE_FCT[type](packet, param) )
                      running = false;
-                 std::cout << "paquet reçu" << std::endl;
              }
              else
                  running = false;
          }
          else running = false;
     }
-     std::cout << "!!" << std::endl;
+    std::cout << "Fermeture du client" << std::endl;
     socket.disconnect();
     selector.remove(socket);
     return 0;
-}
-
-void traitement(sf::Packet & paquet)
-{
-    sf::Uint16 x;
-    paquet >> x;
-    switch(x)
-    {
-        case LD::TRAITEMENT_PARAM::CONNEXION :
-            traitement_connexion(paquet);
-        break;
-        default :
-                std::cout << "Erreur traitement inconnu!" << std::endl;
-        break;
-    }
-
-}
-
-void traitement_connexion(sf::Packet & paquet)
-{
-    bool connecte;
-    paquet >> connecte;
-    if(connecte)
-    {
-        std::cout << "Connexion réussie" << std::endl;
-        sf::Uint32 nbEchec;
-        paquet >> nbEchec;
-        std::cout << "Il y a eu " << nbEchec << " tentative(s) de connexions infructueuses à votre compte depuis votre dernière visite" << std::endl;
-        return;
-    }
-    sf::Uint16 x;
-    paquet >> x;
-    switch(x)
-    {
-        case LD::TRAITEMENT_PARAM::CONNEXION_C::IPBAN :
-        {
-            std::string raison;
-            paquet >> raison;
-            std::cout << "Votre adresse a été bannie pour la raison suivante : " << raison << std::endl;
-        }
-        break;
-        case LD::TRAITEMENT_PARAM::CONNEXION_C::FAUXID :
-            std::cout << "Mauvais login ou mot de passe" << std::endl;
-        break;
-        case LD::TRAITEMENT_PARAM::CONNEXION_C::BANNI :
-        {
-            std::string raison;
-            paquet >> raison;
-            std::cout << "Vous avez été bannie pour la raison suivante : " << raison << std::endl;
-        }
-        break;
-        case LD::TRAITEMENT_PARAM::CONNEXION_C::BLOQUE :
-        {
-            sf::Uint32 temps;
-            paquet >> temps;
-            std::string raison;
-            paquet >> raison;
-            if(raison != "") raison = "pour la raison suivante : " + raison;
-            std::cout << "Votre compte a été bloqué" << raison  <<", attendez " << temps/3600 << "H" << (temps/60)%60 << "min" << temps%60 << "sec avant de pouvoir vous reconnecter" << std::endl;
-        }
-        break;
-        case LD::TRAITEMENT_PARAM::CONNEXION_C::DEJACO :
-        std::cout << "Erreur, vous êtes déjà connecté!" << std::endl;
-
-        break;
-        default :
-                std::cout << "Erreur reponse de connexion inconnu !" << std::endl;
-        break;
-    }
-
 }
 
 
@@ -175,3 +145,64 @@ bool deco(sf::Packet &, Param &)
 {
     return true;
 }
+
+
+bool ipBan(sf::Packet & paquet, Param &)
+{
+    std::cout << "Votre ip a été bannie pour la raison suivante :" << std::endl;
+    std::string raison;
+    paquet >> raison;
+    std::cout << raison << std::endl;
+    return true;
+}
+
+bool fauxId(sf::Packet & paquet, Param &)
+{
+    std::cout << "Login ou mot de passe invalide" << std::endl;
+    return true;
+}
+
+bool bloque(sf::Packet & paquet, Param &)
+{
+    sf::Uint32 temps;
+    std::string raison;
+    paquet >> temps;
+    paquet >> raison;
+    std::cout << "Ce compte a été bloqué pour la raison suivante : " << std::endl;
+    std::cout << raison << std::endl;
+    std::cout << "Veuillez patienter " << temps/(3600*24) << " jours " << temps/3600%24<< " heures " << temps/60%60 << " minutes et " <<  temps%60 << " secondes" << std::endl;
+    return true;
+}
+
+bool banni(sf::Packet & paquet, Param &)
+{
+    std::cout << "Votre compte a été banni pour la raison suivante :" << std::endl;
+    std::string raison;
+    paquet >> raison;
+    std::cout << raison << std::endl;
+
+    return true;
+}
+
+bool badPort(sf::Packet &, Param &)
+{
+    std::cout << "Cher administrateur, vous n'utilisez pas le bon port de connexion !" << std::endl;
+    return true;
+}
+
+bool dejaCo(sf::Packet &, Param &)
+{
+    std::cout << "Vous êtes déjà connecté, vous serez donc déconnecté" << std::endl;
+    return true;
+}
+
+
+bool coReussie(sf::Packet &p, Param &)
+{
+    sf::Uint32 essais;
+    p >> essais;
+    std::cout << "Connexion réussie!" << std::endl;
+    std::cout << "Pendant votre absence, vous avez eu " << essais << " nombres de tentatives à votre compte infructueuse" << std::endl;
+    return false;
+}
+

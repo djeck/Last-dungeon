@@ -13,9 +13,6 @@
 
 int main(void)
 {
-    sf::Mutex x;
-    for(int i=0; i != 10; ++i)
-        x.lock();/*
     try
     {
         LD::Serveur serveur;
@@ -25,7 +22,7 @@ int main(void)
     {
         std::cout << e << std::endl;
         LD::Logger::closeLog();
-    }*/
+    }
     return 0;
 }
 

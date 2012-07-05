@@ -25,6 +25,8 @@ Les sources sont divisées en 5 parties :
 
 
 -------------------------------------   NOTES GENERALES   ----------------------------------------------------------------------
+05/07/2012 :
+Test et débug de la connexion client.
 
 04/07/2012 :
 Travail sur la connexion.
@@ -39,6 +41,10 @@ Une fois le serveur "fini", nous commencerons à mettre puis à corriger/optimis
 
 
 -------------------------------------   NOTES SERVEUR   ------------------------------------------------------------------------
+
+05/07/2012 :
+Test et debogue de la connexion client.
+Presque fini, manque la comparaison entre deux comptes pour empêcher la connexion simultanée à un même compte.
 
 04/07/2012 :
 La connexion des joueurs est finie mais pas encore testée.

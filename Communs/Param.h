@@ -138,7 +138,7 @@ namespace LD
         extern const int NB_MAX_ECHEC;
 
         /** @brief Message affiché lors du blocage de compte */
-        extern std::string MSG_BLOQUE;
+        extern const std::string MSG_BLOQUE;
 
     }
 }

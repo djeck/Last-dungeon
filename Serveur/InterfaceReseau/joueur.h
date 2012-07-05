@@ -83,6 +83,8 @@ namespace LD
             /** @brief Indique si le joueur est connecté ou non
                 @return bool : true si le joueur n'est pas connecté, false sinon */
             bool isNotCo(void);
+
+            friend class Traitement;
     };
 }
 #endif // JOUEUR_H

@@ -3,6 +3,7 @@
 #include "listefonctionserveur.h"
 #include "../../Communs/requetebdd.h"
 #include "../../Communs/Param.h"
+#include "../../Communs/sha512.h"
 
 #include <iostream>
 
@@ -29,14 +30,7 @@ namespace LD
             Instruction instruction = listeInstruction.pop_front();
             if( instruction.first->isValide )
             {
-                TypeInstruction type;
-                *(instruction.second) >> type;
-                if(type > TRAIT_SERVEUR::FIN)
-                {
-                    listeJoueurs.deleteJoueur(*instruction.first);
-                    Joueur::deleteJoueur(*instruction.first);
-                }
-                else if(instruction.first->isNotCo() )
+                if(! instruction.first->infoJoueur )
                 {
                     if( connexion(instruction) )
                     {
@@ -44,15 +38,26 @@ namespace LD
                         Joueur::deleteJoueur(*instruction.first);
                     }
                 }
-                else if( LISTE_FCT[type](instruction, param) )
+                else
                 {
-                    listeJoueurs.deleteJoueur(*instruction.first);
-                    Joueur::deleteJoueur(*instruction.first);
+                    TypeInstruction type;
+                    *(instruction.second) >> type;
+                    if(type > TRAIT_SERVEUR::FIN)
+                    {
+                        listeJoueurs.deleteJoueur(*instruction.first);
+                        Joueur::deleteJoueur(*instruction.first);
+                    }
+                    else if( LISTE_FCT[type](instruction, param) )
+                    {
+                        listeJoueurs.deleteJoueur(*instruction.first);
+                        Joueur::deleteJoueur(*instruction.first);
+                    }
                 }
             }
             else
                 Joueur::deleteJoueur(*instruction.first);
             --*instruction.first;
+           delete instruction.second;
         }
 
     }
@@ -65,36 +70,38 @@ namespace LD
         std::string login, password;
         *instruction.second >> login;
         InfoJoueur * infoJoueur;
-
-        if(infoJoueur = RequeteBDD::getJoueur(login, joueur) )
+        std::cout << "Traitement : " << login << std::endl;
+        if(! (infoJoueur = RequeteBDD::getJoueur(login) ) )
         {
+            std::cout << infoJoueur << std::endl;
             sf::Packet paquet;
             paquet << (TypeInstruction)TRAIT_CLIENT::CONNEXION::FAUXID;
-            socket->send(paquet);
+            socket.send(paquet);
             return true;
         }
-
+        std::cout << "login valide" << std::endl;
         if(infoJoueur->bloque > (unsigned long long)time(NULL))
         {
             sf::Packet paquet;
-            paquet << (TypeInstruction)TRAIT_CLIENT::CONNEXION::BLOQUE << (sf::Uint32)(joueur.bloque - time(NULL)) << joueur.raisonBan;
-            socket->send(paquet);
-            return false;
+            paquet << (TypeInstruction)TRAIT_CLIENT::CONNEXION::BLOQUE << (sf::Uint32)(infoJoueur->bloque - time(NULL)) << infoJoueur->raisonBan;
+            socket.send(paquet);
+            return true;
         }
+
 
         if(infoJoueur->banni)
         {
             sf::Packet paquet;
-            paquet << (TypeInstruction)TRAIT_CLIENT::BANNI << joueur.raisonBan;
-            socket->send(paquet);
-            return false;
+            paquet << (TypeInstruction)TRAIT_CLIENT::CONNEXION::BANNI << infoJoueur->raisonBan;
+            socket.send(paquet);
+            return true;
         }
 
 
         unsigned long long hash[8];
         sf::Uint32 * ptr = (sf::Uint32 *)hash;
         for(int i =0; i != 16; ++i, ++ptr)
-            paquet >> *ptr;
+            *instruction.second >> *ptr;
 
         if(Sha512(hash).getHexadecimal(password) != infoJoueur->hash)
         {
@@ -108,10 +115,10 @@ namespace LD
                 paquet << (TypeInstruction)TRAIT_CLIENT::CONNEXION::BLOQUE << (sf::Uint32)CO_JOUEURS::ATTENTE << CO_JOUEURS::MSG_BLOQUE;
             }
             else
-                paquet << (TypeInstruction)TRAIT_CLIENT::CONNEXION_C::FAUXID;
+                paquet << (TypeInstruction)TRAIT_CLIENT::CONNEXION::FAUXID;
             RequeteBDD::setBloque(infoJoueur->id, temps, CO_JOUEURS::MSG_BLOQUE, infoJoueur->echec);
-            socket->send(paquet);
-            return false;
+            socket.send(paquet);
+            return true;
         }
 
 
@@ -119,25 +126,25 @@ namespace LD
           {
             sf::Packet paquet;
             paquet << (TypeInstruction)TRAIT_CLIENT::CONNEXION::ADMIN_BAD_PORT;
-            socket->send(paquet);
-            return false;
+            socket.send(paquet);
+            return true;
           }
 
-        if( deleteJoueur(*instruction.first) )
+        if( listeJoueurs.deleteJoueur(*instruction.first) )
         {
             sf::Packet reponse;
             reponse << (TypeInstruction)TRAIT_CLIENT::CONNEXION::DEJACO;
-            socket->send(reponse);
-            return false;
+            socket.send(reponse);
+            return true;
         }
 
 
           //Connexion réussie
          RequeteBDD::setBloque(infoJoueur->id, 0, "", 0);
-         instruction->first->infoJoueur = infoJoueur;
+         instruction.first->infoJoueur = infoJoueur;
          sf::Packet reponse;
-         reponse << (TypeInstruction)TRAIT_CLIENT::CONNEXION::REUSSIE << (sf::Uint32)joueur->echec;
-         socket->send(reponse);
+         reponse << (TypeInstruction)TRAIT_CLIENT::CONNEXION::REUSSIE << (sf::Uint32)infoJoueur->echec;
+         socket.send(reponse);
          return false;
     }
 }

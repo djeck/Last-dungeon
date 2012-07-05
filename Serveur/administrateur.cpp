@@ -128,7 +128,7 @@ namespace LD
             switch(typeTraitement)
             {
                case TRAITEMENT_PARAM::ADMINISTRATION :
-                    return traitementAdministratif(paquet);
+                    //return traitementAdministratif(paquet);
                 break;
                 default :
                         //TODO blocage du compte
@@ -141,7 +141,7 @@ namespace LD
     }
 
     bool Administrateur::AdminCo::connexionAdmin(sf::Packet & paquet)
-    {
+    { /*
         std::string login, password;
         paquet >> login;
         InfoJoueur joueur;
@@ -264,7 +264,8 @@ namespace LD
                 //TODO bannir ?
                 return true;
         break;
-        }
+        } */
+        return true;
     }
 }
 /**  @enum ADDJOUEUR : Ajouter un joueur
