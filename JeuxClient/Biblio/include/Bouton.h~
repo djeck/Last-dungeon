@@ -72,7 +72,7 @@ namespace LD
 			@param int config : Détermine les évènements qui déclencherons l'appel de la méthode. Par défaut : LD::Action::Aucun Utilisation : OPTION1 | OPTION2. @see LD::Action
 			
 		*/
-		Bouton(int etat = 0, CLASSE * classe = NULL, Fonction funct = NULL, int config = LD::Action::Aucun):
+		Bouton(int etat = 0, CLASSE * classe = NULL, Fonction funct = NULL, int config = LD::Action:Aucun):
 			etat(etat),
 			funct(funct),
 			classe(classe),
