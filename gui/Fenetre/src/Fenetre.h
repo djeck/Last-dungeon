@@ -25,7 +25,7 @@ namespace LD
 	class Fenetre : LD::Bouton
 	{
 		public :
-		Fenetre(int etat = 0, CLASSE * classe = NULL, Fonction funct = NULL);
+	Fenetre(int etat = Active::ACTIVE);
 		  
 		protected :
 		
