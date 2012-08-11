@@ -94,9 +94,10 @@ namespace LD
     };
 
     template<typename Event, typename Image>
-    Bouton::Bouton(BuilderBouton::BoutonData<Event, Image> &ptr) : ptr(ptr){}
-    
-     
+    Bouton::Bouton(BuilderBouton::BoutonData<Event, Image> &ptr) : ptr(ptr)
+    {
+
+    }
 }
 
 #endif // BOUTON_H

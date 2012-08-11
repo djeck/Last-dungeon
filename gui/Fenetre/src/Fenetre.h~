@@ -29,7 +29,7 @@ namespace LD
 		  
 		protected :
 		  std::vector<Bouton> boutons;
-		  std::vector<Image> images;
+		  std::vector<Image> fond;
 	};
 	
 }
