@@ -50,7 +50,7 @@ namespace LD
             extern const int TAILLE_BUFFER[MAX];
     }
 //permet de compiler un client administrateur.
-#ifdef ADMIN
+//#ifdef ADMIN
     /** @brief options relative à l'administration, disponible uniquement si on compile le serveur ou un client administrateur */
     namespace ADMINISTRATEUR_PARAM
     {
@@ -62,8 +62,11 @@ namespace LD
 
         /** @brief Nombres d'echecs consécutifs après lequel il faut attendre */
         extern const int NB_MAX_ECHEC;
+
+        /** @brief Définie le message de raison de ban en cas de tentative infructeuse de connexions répétée */
+        extern const std::string MSG_BLOQUE;
     }
-#endif
+//#endif
     /** @brief Options relatives au sha512, il est conseillé de changer le sel */
     namespace SHA512_PARAM
     {
@@ -142,5 +145,4 @@ namespace LD
 
     }
 }
-
 #endif // PARAM_H

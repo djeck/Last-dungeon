@@ -97,7 +97,7 @@ int main(void)
      sf::TcpSocket socket;
      sf::SocketSelector selector;
 
-     socket.connect("127.0.0.1", LD::CO_JOUEURS::PORT);
+     socket.connect("127.0.0.1", LD::ADMINISTRATEUR_PARAM::PORT);
      selector.add(socket);
      Param param(socket);
 
@@ -135,6 +135,7 @@ int main(void)
          else running = false;
     }
     std::cout << "Fermeture du client" << std::endl;
+
     socket.disconnect();
     selector.remove(socket);
     return 0;
@@ -156,7 +157,7 @@ bool ipBan(sf::Packet & paquet, Param &)
     return true;
 }
 
-bool fauxId(sf::Packet & paquet, Param &)
+bool fauxId(sf::Packet &, Param &)
 {
     std::cout << "Login ou mot de passe invalide" << std::endl;
     return true;

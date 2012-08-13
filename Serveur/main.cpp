@@ -1,6 +1,9 @@
-#include "serveur.h"
-#include "../../Console/Console/logger.h"
 #include <iostream>
+
+#include <SFML/Network.hpp>
+
+#include "../../Console/Console/logger.h"
+#include "InterfaceReseau/Listener/listeneradmin.h"
 
 /** @mainpage La partie serveur a pour but d'encapsuler au maximum l'architecture spécifique du serveur et aux yeux du programmeur.
   Le programmeur aura juste à définir les constantes pour un traitement et de rajouter son traitement dans le switch approprié.
@@ -9,14 +12,16 @@
   Pour plus de détails, lisez le README présent à la racine du dépôt github : https://github.com/Neckara/Projet
   */
 
-#include <SFML/Network.hpp>
-
 int main(void)
 {
     try
     {
-        LD::Serveur serveur;
-        serveur.startAdmin();
+        bool running, close, bloque;
+        LD::ListeJoueurs listeJoueur(1);
+        LD::ParamTraitement param(running);
+        LD::TraitementAdmin traitement(listeJoueur, NULL, running, close, bloque, param);
+        LD::ListenerAdmin listener(LD::ADMINISTRATEUR_PARAM::PORT, running, 1, 1, close, bloque, traitement);
+        listener.start();
     }
     catch(const std::string & e)
     {

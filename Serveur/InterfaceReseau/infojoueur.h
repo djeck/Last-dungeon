@@ -35,7 +35,9 @@ namespace LD
             /** @brief hash du mot de passe du joueur */
                     const std::string hash;
 
+                    template<typename T, typename U>
                     friend class Traitement;
+                    friend class Joueur;
     };
 }
 

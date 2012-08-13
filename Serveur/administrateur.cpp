@@ -1,9 +1,10 @@
+#include <string>
+#include <iomanip>
+
 #include "administrateur.h"
 #include "../Communs/logger.h"
 #include "../Communs/requetebdd.h"
 #include "../Communs/Param.h"
-#include <string>
-#include <iomanip>
 #include "../Communs/sha512.h"
 
 
@@ -112,7 +113,7 @@ namespace LD
         delete socket;
     }
 
-    bool Administrateur::AdminCo::traitement(sf::Packet & paquet, Administrateur * general)
+    bool Administrateur::AdminCo::traitement(sf::Packet & paquet, Administrateur *)
     {
         if(! connecte)
         {
@@ -140,7 +141,7 @@ namespace LD
         return false;
     }
 
-    bool Administrateur::AdminCo::connexionAdmin(sf::Packet & paquet)
+    bool Administrateur::AdminCo::connexionAdmin(sf::Packet & )
     { /*
         std::string login, password;
         paquet >> login;

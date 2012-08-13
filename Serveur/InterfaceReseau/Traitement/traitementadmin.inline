@@ -1,0 +1,44 @@
+#ifndef TRAITEMENTADMIN_INLINE
+#define TRAITEMENTADMIN_INLINE
+
+
+#include "traitementadmin.h"
+
+namespace LD
+{
+    namespace TraitementP
+    {
+        namespace Mode
+        {
+
+            inline unsigned int Admin::getAttente()
+            {
+                return ADMINISTRATEUR_PARAM::ATTENTE;
+            }
+
+            inline const std::string & Admin::getMessage()
+            {
+                return "toto";//ADMINISTRATEUR_PARAM::MSG_BLOQUE;
+            }
+
+            inline bool Admin::isBonPort(unsigned int droit ,sf::TcpSocket & socket)
+            {
+                if(! ( droit  & (1<<DROITS::ACCES) ) )
+                {
+                  sf::Packet paquet;
+                  paquet << (TypeInstruction)TRAIT_CLIENT::CONNEXION::ADMIN_BAD_PORT;
+                  socket.send(paquet);
+                  return true;
+                }
+                return false;
+            }
+
+            inline int Admin::getMaxEchec()
+            {
+                return ADMINISTRATEUR_PARAM::NB_MAX_ECHEC;
+            }
+        }
+    }
+}
+
+#endif // TRAITEMENTADMIN_INLINE

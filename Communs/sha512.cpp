@@ -1,6 +1,6 @@
 #include "sha512.h"
 
-#include "../../Console/Console/Param.h"
+#include "Param.h"
 #include <vector>
 
 #include <iostream>
@@ -117,7 +117,7 @@ namespace LD
             msg.push_back( (ullint)0);
     }
 
-    const std::string & Sha512::getHexadecimal(std::string & resultat)
+    const std::string & Sha512::getHexadecimal(std::string & resultat) const
     {
         resultat ="";
         int decallage = sizeof(ullint)*8-4;
@@ -211,4 +211,32 @@ namespace LD
             0x4cc5d4becb3e42b6ULL, 0x597f299cfc657e2aULL,
             0x5fcb6fab3ad6faecULL, 0x6c44198c4a475817ULL
     };
+
+
+    bool Sha512::operator<(const Sha512 & other) const
+    {
+        int i = 0;
+        for(; hash[i] == other.hash[i] ; ++i)
+            if(i == 7)
+                return false;
+        return hash[i] < other.hash[i];
+    }
+
+    bool Sha512::operator==(const Sha512 & other)const
+    {
+        int i = 0;
+        for(; hash[i] == other.hash[i] ; ++i)
+            if(i == 7)
+                return true;
+        return false;
+    }
+
+    bool Sha512::operator!=(const Sha512 & other)const
+    {
+        int i = 0;
+        for(; hash[i] == other.hash[i] ; ++i)
+            if(i == 7)
+                return false;
+        return true;
+    }
 }

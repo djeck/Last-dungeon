@@ -1,11 +1,11 @@
-#include "joueur.h"
-#include "listener.h"
-
 #include <iostream>
+
+#include "joueur.h"
+#include "Listener/virtuallistener.h"
 
 namespace LD
 {
-    Joueur::Joueur(Listener & listener, sf::TcpSocket & socket, int nbThread) :
+    Joueur::Joueur(VirtualListener & listener, sf::TcpSocket & socket, int nbThread) :
             listener(listener), socket(socket),
             infoJoueur(NULL), compteur(0),
             valide(true), isValide(valide),
@@ -17,8 +17,8 @@ namespace LD
     Joueur::~Joueur()
     {
         delete &socket;
-        std::cout << "fin socket" << std::endl;
-        //TODO enregistrer les données
+
+        //TODO saveData
         sem_destroy(&semaphore);
     }
 
@@ -27,9 +27,11 @@ namespace LD
         j.ecriture.lock();
         if(j.valide)
         {
+            j.listener.delSocket(j);
+            j.socket.disconnect();
             j.valide = false;
         }
-        if(j.compteur == 1) //l'instruction en cours est comptée dans le compteur
+        if(j.compteur <= 1) //l'instruction en cours est comptée dans le compteur
             delete &j;
         j.ecriture.unlock();
     }
@@ -55,9 +57,28 @@ namespace LD
     {
         if(! (other.valide && valide) )
             return false;
-        if(! (other.infoJoueur && infoJoueur) )
+        bool retour = false;
+        sem_wait(&semaphore);
+        if(other.infoJoueur && infoJoueur)
+        {
+            retour = (infoJoueur->id == other.infoJoueur->id);
+        }
+        sem_post(&semaphore);
+        return retour;
+    }
+
+    bool Joueur::operator==(unsigned int other)
+    {
+        if(! valide )
             return false;
-        return true; //TODO *infoJoueur == *other.infoJoueur;
+        bool retour = false;
+        sem_wait(&semaphore);
+        if(infoJoueur)
+        {
+            retour = (infoJoueur->id == other);
+        }
+        sem_post(&semaphore);
+        return retour;
     }
 
     bool Joueur::isNotCo(void)

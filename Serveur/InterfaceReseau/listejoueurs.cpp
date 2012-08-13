@@ -1,6 +1,6 @@
-#include "listejoueurs.h"
-
 #include <iostream>
+
+#include "listejoueurs.h"
 
 namespace LD
 {
@@ -37,6 +37,7 @@ namespace LD
 
         std::list<Joueur *>::const_iterator const fin = listeJoueur.end();
         for( std::list<Joueur *>::iterator p = listeJoueur.begin() ; p != fin; ++p )
+        {
             if( j == **p )
             {
                 Joueur * retour = *p;
@@ -46,6 +47,33 @@ namespace LD
                 Ecriture.unlock();
                 return retour;
             }
+        }
+
+        for(int i=0; i != nbMaxSem; ++i)
+            sem_post(&semaphore);
+        Ecriture.unlock();
+        return NULL;
+    }
+
+    Joueur * ListeJoueurs::deleteJoueur(unsigned int j)
+    {
+        Ecriture.lock();
+        for(int i=0; i != nbMaxSem; ++i)
+            sem_wait(&semaphore);
+
+        std::list<Joueur *>::const_iterator const fin = listeJoueur.end();
+        for( std::list<Joueur *>::iterator p = listeJoueur.begin() ; p != fin; ++p )
+        {
+            if( **p == j )
+            {
+                Joueur * retour = *p;
+                listeJoueur.remove(*p);
+                for(int i=0; i != nbMaxSem; ++i)
+                    sem_post(&semaphore);
+                Ecriture.unlock();
+                return retour;
+            }
+        }
 
         for(int i=0; i != nbMaxSem; ++i)
             sem_post(&semaphore);

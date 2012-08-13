@@ -1,12 +1,11 @@
 #ifndef LISTEJOUEURS_H
 #define LISTEJOUEURS_H
 
-
-#include "joueur.h"
-
 #include <SFML/Network.hpp>
 #include <list>
 #include <semaphore.h>
+
+#include "joueur.h"
 
 
 namespace LD
@@ -30,6 +29,11 @@ namespace LD
             @param Joueur & j : joueur à enlever
             @return Joueur * : pointeur sur le joueur trouvé ou NULL sinon */
         Joueur * deleteJoueur(Joueur & j);
+
+        /** @brief Enlève un joueur de la liste
+            @param unsigned int j : indentifiant du joueur à enlever
+            @return Joueur * : pointeur sur le joueur trouvé ou NULL sinon */
+        Joueur * deleteJoueur(unsigned int j);
 
         /** @brief Envois d'un message à tous les joueurs de la liste
             @param  sf::Packet & p : paquet à envoyer */

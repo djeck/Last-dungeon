@@ -2,10 +2,11 @@
 #define SERVEUR_H
 
 #include <SFML/Network.hpp>
+
 #include "InterfaceReseau/listeinstruction.h"
 #include "InterfaceReseau/listejoueurs.h"
 #include "../Communs/Param.h"
-#include "InterfaceReseau/listener.h"
+//#include "InterfaceReseau/listener.h"
 #include "InterfaceReseau/paramtraitement.h"
 
 namespace LD

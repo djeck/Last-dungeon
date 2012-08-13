@@ -9,6 +9,9 @@ namespace LD
     /** @brief Arrête le programme côté serveur */
     bool arretProgrammeServeur(Instruction &i, ParamTraitement & p);
 
+    /** @brief Deconnexion du client, retourne true
+    @return bool : retourne true */
+    bool decoClient(Instruction &i, ParamTraitement &p);
 
 
     typedef bool (*FctTraitement)(Instruction &, ParamTraitement &);

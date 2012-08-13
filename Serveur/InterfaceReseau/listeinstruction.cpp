@@ -1,6 +1,6 @@
-#include "listeinstruction.h"
-
 #include <iostream>
+
+#include "listeinstruction.h"
 
 namespace LD
 {
@@ -17,7 +17,7 @@ namespace LD
     }
 
 
-    int ListeInstruction::push_pack(sf::Packet & paquet, Joueur & joueur)
+    int ListeInstruction::push_back(sf::Packet & paquet, Joueur & joueur)
     {
         ++joueur;
         verrou.lock();

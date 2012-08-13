@@ -1,8 +1,10 @@
+#include <list>
+
 #include "serveur.h"
 #include "administrateur.h"
 #include "../Communs/logger.h"
-#include "InterfaceReseau/traitement.h"
-#include <list>
+#include "InterfaceReseau/Traitement/traitementclient.h"
+#include "InterfaceReseau/Listener/listenerclient.h"
 
 
 namespace LD
@@ -25,9 +27,8 @@ namespace LD
     void Serveur::start()
     {
         //--------- Création des paramètres -----------------------
-        Listener listener(port, running, listeInstruction, coEntrant, closeServeurClient, verrou, nbThread);
-
-        Traitement traitement(listeJoueurs, listeInstruction, running, coEntrant, closeServeurClient, verrou, param);
+        ListenerClient listener(port, running, nbThread, 15, closeServeurClient, coEntrant, listeInstruction);//(port, running, listeInstruction, coEntrant, closeServeurClient, verrou, nbThread);
+        TraitementClient traitement(listeJoueurs, &listeInstruction, running, coEntrant, closeServeurClient, param);
 
         sf::Thread * thread[nbThread];
 
@@ -35,7 +36,7 @@ namespace LD
 
         for(int i=0; i != nbThread; ++i)
         {
-            thread[i] = new sf::Thread(&Traitement::traiter, &traitement);
+            thread[i] = new sf::Thread( (void(VirtualTraitement::*)() )&VirtualTraitement::traiter, (VirtualTraitement *)&traitement);
             thread[i]->launch();
         }
 

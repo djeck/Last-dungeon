@@ -5,10 +5,12 @@
 #include <iostream>
 #include <vector>
 #include <string>
-#include "Param.h"
-#include "resultatrequete.h"
 #include <SFML/Graphics.hpp>
 #include <sstream>
+
+
+#include "Param.h"
+#include "resultatrequete.h"
 /*
 Installer mysql :
 aptitude install libmysqlclient15-dev

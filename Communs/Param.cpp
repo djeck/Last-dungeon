@@ -42,7 +42,7 @@ namespace LD
         extern const int TAILLE_BUFFER[MAX] = {500, 500};
     }
 //permet de compiler un client administrateur.
-#if ADMIN
+//#if ADMIN
     /** @brief options relative à l'administration, disponible uniquement si on compile le serveur ou un client administrateur */
     namespace ADMINISTRATEUR_PARAM
     {
@@ -54,8 +54,9 @@ namespace LD
 
         /** @brief Nombres d'echecs consécutifs après lequel il faut attendre */
         extern const int NB_MAX_ECHEC = 3;
+        extern const std::string MSG_BLOQUE = "Bien fait!";
     }
-#endif
+//#endif
     /** @brief options relatives au sha512 */
     namespace SHA512_PARAM
     {
@@ -66,7 +67,7 @@ namespace LD
     namespace CO_JOUEURS
     {
         extern const int NB_THREAD = 5;
-        extern const unsigned int PORT = 1203;
+        extern const unsigned int PORT = 1200;
         extern const unsigned int ATTENTE = 20;
         extern const int NB_MAX_ECHEC = 2;
         extern const std::string MSG_BLOQUE = "Bien fait!";

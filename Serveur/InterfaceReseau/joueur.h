@@ -10,7 +10,7 @@
 
 namespace LD
 {
-    class Listener;
+    class VirtualListener;
 
     /** @brief Représente un joueur connecté ou non */
     class Joueur
@@ -20,7 +20,7 @@ namespace LD
             @param ListeSocket & listeSocket : liste de socket du listener
             @param sf::TcpSocket & socket : socket du joueur
             @param int nbThread : nombre de thread maximum pouvant accéder aux informations du joueur en même temps */
-        Joueur(Listener & listener, sf::TcpSocket & socket, int nbThread);
+        Joueur(VirtualListener & listener, sf::TcpSocket & socket, int nbThread);
 
         /** @brief Déconnecte le joueur, si le joueur est connecté, enregistre les informations et le supprime des différentes listes de joueurs.
         Dans tout les cas, supprime le joueur de la liste des sockets du listener.
@@ -43,6 +43,11 @@ namespace LD
             @return bool : true si les deux joueur sont identiques, false sinon */
         bool operator==(const Joueur & other);
 
+        /** @brief Retourne true si les deux joueurs sont les mêmes
+            @param unsigned int other : identifiant du joueur
+            @return bool : true si les deux joueur sont identiques, false sinon */
+        bool operator==(unsigned int other);
+
     private :
 
 
@@ -52,7 +57,7 @@ namespace LD
 
 
             /** @brief Permet de déconnecter le joueur */
-            Listener & listener;
+            VirtualListener & listener;
 
     public :
             /** @brief Socket du joueur */
@@ -84,6 +89,7 @@ namespace LD
                 @return bool : true si le joueur n'est pas connecté, false sinon */
             bool isNotCo(void);
 
+            template<typename T, typename U>
             friend class Traitement;
     };
 }

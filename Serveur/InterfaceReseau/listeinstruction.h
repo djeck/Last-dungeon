@@ -3,11 +3,9 @@
 
 #include <SFML/System.hpp>
 #include <SFML/Network.hpp>
-
+#include <list>
 
 #include "joueur.h"
-
-#include <list>
 #include "semaphore.h"
 
 namespace LD
@@ -33,7 +31,7 @@ namespace LD
             @param Joueur & : expéditeur
             @return int : nombre de traitements contenu dans la liste, permet au thread listenner de bloquer les connexions entrantes en cas
             de surchage */
-        int push_pack(sf::Packet &, Joueur &);
+        int push_back(sf::Packet &, Joueur &);
 
         /** @brief Retourne l'instruction en tête de la liste et la supprime de cette liste
             @return Instruction à traiter */

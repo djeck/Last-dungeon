@@ -1,15 +1,20 @@
-#include "listefonctionserveur.h"
-
 #include <iostream>
+
+#include "listefonctionserveur.h"
 
 namespace LD
 {
-    extern const FctTraitement LISTE_FCT[] = {&arretProgrammeServeur};
+    extern const FctTraitement LISTE_FCT[] = {&arretProgrammeServeur, &decoClient};
 
-    bool arretProgrammeServeur(Instruction &i, ParamTraitement & p)
+    bool arretProgrammeServeur(Instruction &, ParamTraitement & p)
     {
         p.running = false;
         return true;
     }
 
+
+    bool decoClient(Instruction &, ParamTraitement &)
+    {
+        return true;
+    }
 }

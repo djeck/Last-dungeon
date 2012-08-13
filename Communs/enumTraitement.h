@@ -43,8 +43,16 @@ namespace LD
             enum{CLOSE_PGRM};
         }
 
+        /** @brief fonctions de base du joueur */
+        namespace BASE_JOUEUR
+        {
+            /** @brief constantes pour les fonctions de bases du joueur
+              @enum DECO : le joueur souhaite se déconnecter */
+            enum{DECO = ADMINISTRATION::CLOSE_PGRM + 1};
+        }
+
         /** @brief marque la fin de l'énumération */
-        enum{FIN = ADMINISTRATION::CLOSE_PGRM};
+        enum{FIN = BASE_JOUEUR::DECO};
     }
 
 }
