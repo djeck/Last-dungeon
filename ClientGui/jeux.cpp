@@ -1,11 +1,18 @@
 #include <cstdio>
 #include <iostream>
+#include <windows.h> //windows
+
+
 #include "jeux.h"
 #include "preferances.h"
 #include "map.h"
 
+
 namespace LD
 {
+    NOTIFYICONDATA g_notifyIconData;
+    HWND g_hwnd ;
+
     Jeux::Jeux(irr::u32 x, irr::u32 y, const wchar_t * titre) :
         //TODO voir pour la vsync (avant-dernier argument), true ou false ?
         device(irr::createDevice(irr::video::EDT_OPENGL, irr::core::dimension2d<irr::u32>(x,y), 32, false, true, false, 0) ),
@@ -46,9 +53,16 @@ namespace LD
         }
         /* Titre de la fenetre */
         device->setWindowCaption(newTitre);
-        delete newTitre;
-        //TODO icône
 
+        //Windows
+        HANDLE hProcess= FindWindow(0,newTitre);
+        HICON hIcon = LoadIcon( GetModuleHandle(NULL),  MAKEINTRESOURCE(1) );
+        SendMessage( (HWND)hProcess,WM_SETICON,ICON_BIG, (LPARAM)hIcon);// Set big icon (ALT+TAB)
+        SendMessage( (HWND)hProcess,WM_SETICON,ICON_BIG, (LPARAM)hIcon);// Set little icon (titlebar)
+
+        CloseHandle(hProcess); //fin Windows
+
+        delete newTitre;
     }
 
 

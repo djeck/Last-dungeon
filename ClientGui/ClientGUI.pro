@@ -4,8 +4,12 @@ SOURCES += main.cpp \
     fond2d.cpp \
     eventrecever.cpp \
     reseau.cpp \
-    preferances.cpp
-LIBS += -lIrrlicht
+    preferances.cpp \
+    soundmanager.cpp
+LIBS += -lIrrlicht \
+    -lsfml-graphics \
+    -lsfml-network \
+    -lsfml-audio
 
 HEADERS += \
     jeux.h \
@@ -13,4 +17,6 @@ HEADERS += \
     fond2d.h \
     eventrecever.h \
     reseau.h \
-    preferances.h
+    preferances.h \
+    soundmanager.h
+win32:RC_FILE += icone.rc
