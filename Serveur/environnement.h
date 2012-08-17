@@ -3,9 +3,9 @@
 
 #include<list>
 #include<SFML/Network.hpp>
-#include "../../Console/Console/InfoJoueur.h"
 #include <semaphore.h>
 
+#include "InfoJoueur.h"
 
 namespace LD
 {

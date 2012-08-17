@@ -1,0 +1,121 @@
+ALL RIGHTS RESERVED.
+
+Pour toute réutilisation des sources, veuillez nous contacter au préalable.
+
+Toute la documentation doxygen est disponible ici : http://jsz.kegtux.org/doc-sources/
+La documentation date du 21/06/2012, elles ne sont pas à jour.
+
+La présentation du projet est encore en cours d'écriture, notre secrétaire travaille dessus.
+N.B : Le site jsz.kegtux.org est en cours de création, il n'est pas encore présentable au public.
+
+
+Pour toute recrutement, remarques, questions ou autre, vous pouvez contacter Neckara via :
+- skype : denmig_neckara
+- msn : neckara@hotmail.fr
+- mail : neckara.LastDungeon@gmail.com
+Nous sommes ouvert à toute critique ou remarques qui pourraient nous aider à nous améliorer.
+
+
+Les sources sont divisées en 5 parties :
+- le serveur, en cours de développement par Neckara ;
+- le client, interface console développé par Neckara pour les besoins des tests du serveur ;
+- la partie commune, sources réutilisées dans divers projets ;
+- le go, jeux millénaire constituant notre premier mode pvp, développé par Anicet ;
+- l'interface graphique du go, sert d'interface entre le go et l'interface graphique générale, développé par DoctorFool.
+
+
+-------------------------------------   NOTES GENERALES   ----------------------------------------------------------------------
+05/07/2012 :
+Test et débug de la connexion client.
+
+04/07/2012 :
+Travail sur la connexion.
+Nous nous pencherons très bientôt sur la réalisation d'un gestionnaire de mises à jours et nous en profiterons pour grandement améliorer la précédante classe bouton.
+
+21/06/2012 :
+Seules les parties "serveur", "client" et "commune" sont définitives.
+Une fois le Go intégré au client et au serveur, les partie "go" et "interface graphique go" disparaîtrons.
+Le projet est très mal structuré, nous tentons d'y remédier.
+
+Une fois le serveur "fini", nous commencerons à mettre puis à corriger/optimiser les sources du gestionnaires de mises à jours.
+
+
+-------------------------------------   NOTES SERVEUR   ------------------------------------------------------------------------
+
+05/07/2012 :
+Test et debogue de la connexion client.
+Presque fini, manque la comparaison entre deux comptes pour empêcher la connexion simultanée à un même compte.
+
+04/07/2012 :
+La connexion des joueurs est finie mais pas encore testée.
+Il manque la déconnexion propre des joueurs ainsi que l'amélioration de la connexion administrateur en suivant le modèle de la connexion des joueurs.
+Il ne manquera plus que l'implémentation de quelques tâches administratives.
+
+21/06/2012 :
+Un thread administrateur est dédiés aux connexions des administrateurs et des tâches administratives.
+
+Connexion administrateur presque finie :
+- bannissement de l'ip ou du compte possible ;
+- impossibilité de se connecter une fois banni, envois de la raison du banissement au client ;
+- le compte est bloqué pendant X secondes au bout de Y tentatives échouées, remis à 0 dans le cas d'une tentative fructueuse ;
+- impossibilité de se connecter une fois le compte bloqué tant que la durée ne s'est pas écoulée, envois de la raison de blocage au client ;
+- une fois connecté, le nombre d'echec infructueux est envoyé au client ;
+- hash du mot de passe (SHA-512) ;
+- impossibilité de se connecter en même temps sur un même compte.
+
+A faire :
+
+Tâches administratives :
+- créer un joueur ;
+- donner des droits administratifs ;
+- ouvrir/fermer l'accès du serveur aux joueurs ;
+- arrêter le programme serveur ;
+- (dé)bannir/(dé)bloquer un joueur par la décision d'un administrateur ;
+- envoyer des messages à tous les joueurs connectés ;
+- traiter les fichiers de logs ;
+
+Pouvoir se déconnecter proprement.
+Sécurité et timeout sur les socket (utilisation de OpenSLL).
+
+Connexion des joueurs, un thread lit les données et X threads traitents les données suivant un principe de producteur/consommateur.
+
+
+Remarques : 
+La structure du thread administrateur est horrible et mal pensée.
+Il sera revu lors de la connexion des joueur qui sera très similaire à la connexion administrative.
+
+
+-------------------------------------   NOTES CLIENT   -------------------------------------------------------------------------
+
+21/06/2012 :
+Développement avec une interface de console, ne sert qu'aux tests des connexions dans la partie serveur.
+
+
+-------------------------------------   NOTES PARTIE COMMUNE   -----------------------------------------------------------------
+
+04/07/2012 :
+- Amélioration des énumérations pour définir les traitements.
+
+21/06/2012 :
+
+Fait :
+- SHA512.
+- Gestion de la BDD (ici mysql).
+- Gestion des injections SQL.
+- Fichiers de logs.
+
+-------------------------------------   NOTES GO   -----------------------------------------------------------------------------
+
+04/07/2012 :
+Le programmeur ayant les sources ne donne plus de nouvelles depuis quelque temps.
+Pour éviter que ceci ne se reproduise, nous rendons obligatoire la création d'un fork du projet à chaque programmeur de l'équipe.
+
+21/06/2012 :
+
+A venir, les sources ne sont pas encore en ligne.
+
+-------------------------------------   NOTES INTERFACE GRAPHIQUE GO   ---------------------------------------------------------
+
+21/06/2012 :
+
+A venir, les sources ne sont pas encore en ligne.

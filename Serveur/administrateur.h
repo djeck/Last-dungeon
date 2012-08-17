@@ -66,7 +66,10 @@ namespace LD
                     @return bool : retourne true s'il faut supprimer la socket */
                 bool traitement(sf::Packet & paquet, Administrateur * general);
 
-
+                /** @brief Traite les données reçus si elles sont destinée à des traitements administratifs
+                    @param sf::Packet & paquet : données reçues
+                    @return bool : retourne true s'il faut supprimer la socket */
+                bool traitementAdministratif(sf::Packet & paquet);
 
                 /** @brief Permet de connecter un administrateur
                     @param sf::Paquet & paquet : paquet envoyé.
