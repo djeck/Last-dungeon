@@ -2,5 +2,5 @@
 wget https://github.com/Neckara/Projet/zipball/master
 unzip master
 rm master
-cp -R Neckara-Projet-01b4dde/* /home/djeck/git/Projet/
+cp -R Neckara-Projet-01b4dde/* ./
 rm -r Neckara-Projet-01b4dde

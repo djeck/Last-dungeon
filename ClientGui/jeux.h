@@ -9,6 +9,7 @@ namespace LD
 {
     class Map;
     struct Preferances;
+    class Sommaire;
 
     /** @brief Classe permettant de lancer le jeux */
     class Jeux
@@ -29,12 +30,25 @@ namespace LD
             /!\ Avant de lancer cette méthode, pensez bien à définir les actions clavier et souris */
         void start(void);
 
+        /** @brief Permet d'obtenir le driver */
+        inline irr::video::IVideoDriver * getDriver(void){ return driver; }
+        /** @brief permet d'obtenir la GUI */
+        inline irr::gui::IGUIEnvironment * getGUI(void){ return gui; }
+        /** @brief envois un évènement au menu */
+        bool eventMenu(const irr::SEvent event);
         //TODO changeCamera();
         //TODO changeCurseur();
         //TODO changeGui();
+        inline irr::u32 getX(void){ return x; }
+        inline irr::u32 getY(void){ return y; }
+
+    private :
+        /** @brief largeur de la fenetre */
+        irr::u32 x;
+        /** @brief hauteur de la fenetre */
+        irr::u32 y;
         /** @brief détecte les autres évènements */
         void detectAutreEvent(void);
-    private :
         /** @brief Heu... */
         irr::IrrlichtDevice *device;
 
@@ -52,6 +66,14 @@ namespace LD
 
         /** @brief Preferances du joueur */
         Preferances * preferances;
+
+        /** @brief gui */
+        irr::gui::IGUIEnvironment * gui;
+    public :
+        /** @brief permet de changer de map */
+        Sommaire * sommaire;
+        /** @brief quitte le jeux */
+        inline void quitter(void){ device->closeDevice(); }
 
         friend class EventRecever;
     };

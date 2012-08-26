@@ -1,10 +1,9 @@
 #include<iostream>
 
 #include <irrlicht/irrlicht.h>
-#include<iostream>
 
 #include "jeux.h"
-#include "fond2d.h"
+#include "map/diapo2d.h"
 /*
 //  -> Ecrire le nom de la version
 #include <cstdio>
@@ -21,16 +20,10 @@ fclose(fichier);
 
 int main(void)
 {
-    LD::SoundManager smanage;
-    sf::Sound s(*smanage.addSon("toto", "ball.wav") );
-    s.play();
-    sf::Music * m = smanage.addMusic("titi", "applaudi-foule.wav");
-    m->setLoop(true);
-    m->play();
-
     LD::Jeux jeux(800,600, L"Last Dungeon - ");
-    LD::Fond2D * fond = new LD::Fond2D();
-    jeux.setMap(fond);
+    const char * tabImage[] = {"ressources/intro1.png", "ressources/intro2.png", NULL};
+    LD::Diapo2D * diapo = new LD::Diapo2D(&jeux, tabImage, "applaudi-foule.wav", 10, 1, true);
+    diapo->start();
     jeux.start();
     return 0;
 }

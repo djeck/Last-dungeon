@@ -10,7 +10,10 @@ namespace LD
     {
     public:
         Map();
+        /** @brief traitement des évènements reçus */
         virtual bool onEvent(const irr::SEvent &event) = 0;
+        /** @brief dessine */
+        virtual void draw(void) = 0;
         virtual ~Map(){}
     };
 }

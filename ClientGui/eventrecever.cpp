@@ -12,7 +12,11 @@ namespace LD
 
     bool EventRecever::OnEvent(const irr::SEvent &event)
     {
-        return ! ( jeux->m_map ? jeux->m_map->onEvent(event) : true );
-        /* && (jeux->gui)?jeux->gui->onEvent(event) ) : true */ ;
+        bool absorb = true;
+        if( jeux->eventMenu(event) )
+                return true;
+        if(jeux->m_map)
+            absorb = jeux->m_map->onEvent(event);
+        return absorb;
     }
 }
