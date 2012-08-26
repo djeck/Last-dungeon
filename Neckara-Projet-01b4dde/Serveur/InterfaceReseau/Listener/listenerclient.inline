@@ -1,0 +1,83 @@
+#ifndef LISTENERCLIENT_INLINE
+#define LISTENERCLIENT_INLINE
+
+#include "../listeinstruction.h"
+
+#include "listenerclient.h"
+
+
+namespace LD
+{
+
+    namespace ListenerP
+    {
+
+        namespace Traitement
+        {
+            inline void Liste::entrer(void)
+            {
+                mutex.lock();
+            }
+
+            inline void Liste::sortir(void)
+            {
+                mutex.unlock();
+            }
+
+            inline void Liste::traiter(sf::Packet & paquet, Joueur & joueur, ListeInstruction & liste)
+            {
+                liste.push_back(paquet, joueur);
+             }
+        }
+
+        namespace Log
+        {
+            inline void Default::startEcoute(sf::Socket::Status & status)
+            {
+                if(status) throw("Erreur lors du démarrage de l'écoute du listener");
+            }
+            inline void Default::coBanni()
+            {
+            }
+            inline void Default::filtrageOk()
+            {
+            }
+            inline void Default::close()
+            {
+            }
+        }
+
+        namespace Bloque
+        {
+            inline bool Default::isBloque(sf::TcpSocket * socket, bool bloque)
+            {
+                if(bloque)
+                {
+                    sf::Packet paquet;
+                    socket->send(paquet);
+                }
+                return bloque;
+            }
+        }
+
+        namespace Close
+        {
+            inline bool Default::boucle(bool running)
+            {
+                return running;
+            }
+
+            inline bool Default::boucle(bool fermer, bool running)
+            {
+                return running && ! fermer;
+            }
+
+            inline void Default::wait()
+            {
+                //TODO
+            }
+        }
+    }
+}
+
+#endif // LISTENERCLIENT_INLINE
