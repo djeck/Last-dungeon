@@ -5,12 +5,12 @@
 
 namespace LD
 {
-/** @brief détermine le fond de la fenêtre, ce qui est derrière la "GUI" */
-    class Map
+/** @brief dï¿½termine le fond de la fenï¿½tre, ce qui est derriï¿½re la "GUI" */
+    class Map : irr::IEventReceiver
     {
     public:
         Map();
-        /** @brief traitement des évènements reçus */
+        /** @brief traitement des ï¿½vï¿½nements reï¿½us */
         virtual bool onEvent(const irr::SEvent &event) = 0;
         /** @brief dessine */
         virtual void draw(void) = 0;
