@@ -38,6 +38,7 @@ namespace LD
 	 void setPion(Pion* pion, Socle* socle);
 	/** @brief redefini un socle
 	  @param numPlateau : id du plateau
+	  @param socleModel : socle servent de base pour placer le socle
 	  @param socle : socle attribué au pion
 	  @param x : position x relative au plateau
 	  @param y : position y relative au plateau

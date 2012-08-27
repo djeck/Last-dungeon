@@ -1,3 +1,6 @@
+/*
+ * Fichier en cour de devellopement.
+ */
 #ifndef VIEW_H
 #define VIEW_H
 
