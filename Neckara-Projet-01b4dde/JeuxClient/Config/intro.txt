@@ -1,4 +1,0 @@
-3
-icone1.png
-icone2.png
-icone3.png

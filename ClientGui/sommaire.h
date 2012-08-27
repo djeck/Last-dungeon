@@ -15,8 +15,6 @@ namespace LD
           @param Jeux * jeux : pointeur vers le jeux */
         Sommaire(Jeux * jeux);
         ~Sommaire();
-        /** @brief Prochaine map à charger */
-        int next;
         /** @brief charge la prochaine map et détruit l'ancienne */
         void change(void);
 	/** @brief envois un évènement au menu */
@@ -27,6 +25,8 @@ namespace LD
             return menu->onEvent(event);
         }
     protected:
+        /** @brief Prochaine map à charger */
+        int next;
         /** @brief pointeur vers le jeux */
         Jeux * jeux;
         /** @brief pointeur sur le menu de jeux */
