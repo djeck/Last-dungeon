@@ -15,25 +15,23 @@ namespace LD
           @param Jeux * jeux : pointeur vers le jeux */
         Sommaire(Jeux * jeux);
         ~Sommaire();
-        /** @brief charge la prochaine map et détruit l'ancienne */
-        void change(void);
-	/** @brief envois un évènement au menu */
-        inline bool eventMenu(const irr::SEvent event)
-        {
-            if(! menuActive)
-                return false;
-            return menu->onEvent(event);
-        }
-    protected:
         /** @brief Prochaine map à charger */
         int next;
+        /** @brief charge la prochaine map et détruit l'ancienne */
+        void change(void);
         /** @brief pointeur vers le jeux */
         Jeux * jeux;
         /** @brief pointeur sur le menu de jeux */
         Menu * menu;
         /** @brief indique si on est sur le menu ou non */
         bool menuActive;
-
+        /** @brief envois un évènement au menu */
+        inline bool eventMenu(const irr::SEvent event)
+        {
+            if(! menuActive)
+                return false;
+            return menu->onEvent(event);
+        }
         /** @brief enregistre les sons et autres */
         SoundManager soundManager;
     };

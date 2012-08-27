@@ -1,0 +1,27 @@
+ 
+#ifndef DATAREAD_H
+#define DATAREAD_H
+
+#include <iostream>
+#include <irrlicht/irrlicht.h>
+
+namespace LD
+{
+	namespace GO
+	{
+
+	  class dataread
+	  {
+		  public :
+			  /** @brief permet la lecture d'un fichier
+				  @param tailleX largeur du plateau */
+                         dataread(std::string& name);
+			 static void read(void);
+	          protected:
+		    std::string* localisation;
+			
+	  };
+	}
+}
+
+#endif

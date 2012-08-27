@@ -2,5 +2,5 @@
 wget https://github.com/Neckara/Projet/zipball/master
 unzip master
 rm master
-cp -R Neckara-Projet-01b4dde/* /home/djeck/git/Last-dungeon/
+cp -R Neckara-Projet-01b4dde/* /home/djeck/git/Projet/
 rm -r Neckara-Projet-01b4dde
