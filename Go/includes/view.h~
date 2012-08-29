@@ -1,3 +1,6 @@
+/*
+ * Fichier en cour de devellopement.
+ */
 #ifndef VIEW_H
 #define VIEW_H
 
@@ -8,7 +11,7 @@ namespace LD
 {
  namespace GO
  {
- /** @brief classe view traitent la vue */
+ /** @brief classe 'view' traitent la vue */
  class view
  {
  public:
@@ -50,6 +53,7 @@ namespace LD
 	- ou paraport au plateau
 	*/
  protected:
+   irr::gui:: font;
  };
  }
 }
