@@ -6,7 +6,8 @@
 
 #include <irrlicht/irrlicht.h>
 #include <iostream>
-#include <vector>
+#include "Plateau.h"
+#include "pion.h"
 
 namespace LD
 {
@@ -39,7 +40,7 @@ namespace LD
  	  /** @brief place un pion
 	    @param pion : pion
 	   @param socle : socle attribué au pion */
-	  void setPion(Pion* pion, Socle* socle);
+	  void setPion(Pion* pion);
 	 /** @brief redefini un socle
 	   @param numPlateau : id du plateau
 	   @param socleModel : socle servent de base pour placer le socle
@@ -58,7 +59,7 @@ namespace LD
     irr::scene::ICameraSceneNode* Camera;
     Controller* Controleurs;
     std::vector<plateau*> plateaux;
-    std::vector<antite*> antites;//une antitée est un enssenble de : pion + socle + id
+    std::vector<pion*> pions;
   };
  }
 }
