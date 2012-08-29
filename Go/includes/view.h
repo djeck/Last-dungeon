@@ -14,8 +14,9 @@ namespace LD
   class view
    {
   public:
-          /** @brief le constructeur basic */
- 	 view(void);
+          /** @brief le constructeur basic
+	   @param device : device */
+ 	 view(irr::IrrlichtDevice* device=0);
 	 /** @brief le constructeur complet
 	  @param Camera : la camera
 	  @param device : device
@@ -58,9 +59,9 @@ namespace LD
  	*/
   protected:
     irr::gui::IGUIFont* Font;
-    irr::scene::ICameraSceneNode* Camera;
-    irr::IrrlichtDevice* device;
-    std::vector<plateau*> plateaux;
+    irr::scene::ICameraSceneNode* camera;
+    irr::IrrlichtDevice* Device;
+    std::vector<Plateau*> plateaux;
     std::vector<pion*> pions;
   };
  }

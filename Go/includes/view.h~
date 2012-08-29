@@ -14,13 +14,14 @@ namespace LD
   class view
    {
   public:
-          /** @brief le constructeur basic */
- 	 view(void);
+          /** @brief le constructeur basic
+	   @param device : device */
+ 	 view(irr::IrrlichtDevice* device);
 	 /** @brief le constructeur complet
-	  @param Font : la police 
 	  @param Camera : la camera
 	  @param device : device
 	  @param nbPlateau : nombre de plateaux desirer */
+	 view(irr::scene::ICameraSceneNode* Camera, irr::IrrlichtDevice* device, int nbPlateau);
  	 /** @brief defini le font
  	  @param textureD : emplacement de la texture à charger
  	  @param x : x
@@ -58,9 +59,9 @@ namespace LD
  	*/
   protected:
     irr::gui::IGUIFont* Font;
-    irr::scene::ICameraSceneNode* Camera;
-    irr::IrrlichtDevice* device;
-    std::vector<plateau*> plateaux;
+    irr::scene::ICameraSceneNode* camera;
+    irr::IrrlichtDevice* Device;
+    std::vector<Plateau*> plateaux;
     std::vector<pion*> pions;
   };
  }
