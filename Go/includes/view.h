@@ -41,9 +41,13 @@ namespace LD
  	  @param z : z */ 
  	 void setPositionPlateau(int numPlateau, int x, int y, int z);
  	  /** @brief place un pion
-	    @param pion : pion
+	   @param pion : pion
 	   @param socle : socle attribué au pion */
 	  void setPion(Pion* pion);
+	  /** @brief permet l'ajout d'un plateau
+	   @return : int :id dans le vector du plateau ajouter
+	   
+	  int setPlateau(Plateau* Plateau);
 	 /** @brief redefini un socle
 	   @param numPlateau : id du plateau
 	   @param socleModel : socle servent de base pour placer le socle

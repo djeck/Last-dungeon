@@ -16,7 +16,7 @@ namespace LD
   public:
           /** @brief le constructeur basic
 	   @param device : device */
- 	 view(irr::IrrlichtDevice* device);
+ 	 view(irr::IrrlichtDevice* device=0);
 	 /** @brief le constructeur complet
 	  @param Camera : la camera
 	  @param device : device
