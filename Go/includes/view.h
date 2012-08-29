@@ -54,7 +54,7 @@ namespace LD
 	 - ou paraport au plateau
  	*/
   protected:
-    irr::video::ITexture* Font;
+    irr::gui::IGUIFont* Font;
     irr::scene::ICameraSceneNode* Camera;
     Controller* Controleurs;
     std::vector<plateau*> plateaux;
