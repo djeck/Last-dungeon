@@ -14,8 +14,13 @@ namespace LD
   class view
    {
   public:
-          /** @brief le constructeur */
+          /** @brief le constructeur basic */
  	 view(void);
+	 /** @brief le constructeur complet
+	  @param Camera : la camera
+	  @param device : device
+	  @param nbPlateau : nombre de plateaux desirer */
+	 view(irr::scene::ICameraSceneNode* Camera, irr::IrrlichtDevice* device, int nbPlateau);
  	 /** @brief defini le font
  	  @param textureD : emplacement de la texture à charger
  	  @param x : x

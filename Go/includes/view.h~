@@ -4,7 +4,6 @@
 #include <irrlicht/irrlicht.h>
 #include <iostream>
 #include "Plateau.h"
-#include "controller.h"
 #include "pion.h"
 
 namespace LD
@@ -15,8 +14,13 @@ namespace LD
   class view
    {
   public:
-          /** @brief le constructeur */
+          /** @brief le constructeur basic */
  	 view(void);
+	 /** @brief le constructeur complet
+	  @param Font : la police 
+	  @param Camera : la camera
+	  @param device : device
+	  @param nbPlateau : nombre de plateaux desirer */
  	 /** @brief defini le font
  	  @param textureD : emplacement de la texture à charger
  	  @param x : x

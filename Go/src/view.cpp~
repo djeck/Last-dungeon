@@ -1,0 +1,6 @@
+#include "../includes/view.h"
+
+LD::GO::view::view(void)
+{
+  
+}
