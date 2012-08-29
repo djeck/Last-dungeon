@@ -13,7 +13,7 @@ LD::GO::view::view(irr::scene::ICameraSceneNode* Camera, irr::IrrlichtDevice* de
 {
   Device = device;
   camera = Camera;
-  for(int i = 0; i<nbPlateau; i++)
+  for(int i = 0; i<nbPlateau; i++)//autant de plateau de demander
   plateaux.push_back(new Plateau(10, 10));
   Font = Device ->getGUIEnvironment()->getFont();//font de base
 }
