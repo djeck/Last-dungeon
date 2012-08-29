@@ -1,6 +1,3 @@
-/*
- * Fichier en cour de devellopement.
- */
 #ifndef VIEW_H
 #define VIEW_H
 
@@ -28,9 +25,9 @@ namespace LD
  	 /** @brief defini une nouvelle camera
  	  @param camera : nouvelle camera */ 
  	 void setCamera(irr::scene::ICameraSceneNode* camera);
- 	 /** @brief defini un controlleur dans la vue
- 	  @param controlleur : constroleur */ 
- 	 void setControlleur(Controller* controlleurs);
+ 	 /** @brief defini une device
+ 	  @param device : device */ 
+ 	 void setControlleur(irr::IrrlichtDevice* device);
  	 /** @brief defini la position du plateau
  	  @param numPlateau : id du plateau (numero)
  	  @param x : x
@@ -57,7 +54,7 @@ namespace LD
   protected:
     irr::gui::IGUIFont* Font;
     irr::scene::ICameraSceneNode* Camera;
-    Controller* Controleurs;
+    irr::IrrlichtDevice* device;
     std::vector<plateau*> plateaux;
     std::vector<pion*> pions;
   };
