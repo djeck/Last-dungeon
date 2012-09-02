@@ -8,9 +8,11 @@ LD::GO::view::view(irr::IrrlichtDevice* device=0)
  Font = Device ->getGUIEnvironment()->getFont();//font de base
 }
 
-LD::GO::view::view(irr::scene::ICameraSceneNode* Camera, irr::IrrlichtDevice* device, int nbPlateau)
+LD::GO::view::view(irr::scene::ICameraSceneNode* Camera, irr::IrrlichtDevice* device, Plateau* Plateaux)
 {
   Device = device;
   camera = Camera;
   Font = Device ->getGUIEnvironment()->getFont();//font de base
+  plateaux.push_back(Plateaux);
 }
+
