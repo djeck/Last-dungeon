@@ -1,0 +1,74 @@
+#ifndef LISTENERADMIN_INLINE
+#define LISTENERADMIN_INLINE
+
+
+#include "listeneradmin.h"
+
+
+namespace LD
+{
+
+    namespace ListenerP
+    {
+
+        namespace Traitement
+        {
+            inline void Param::entrer(void)
+            {
+            }
+
+            inline void Param::sortir(void)
+            {
+            }
+
+            inline void Param::traiter(sf::Packet & paquet, Joueur & joueur, TraitementAdmin & traitement)
+            {
+                Instruction inst(&joueur, &paquet);
+                traitement.traiterInstruction(inst);
+             }
+        }
+        namespace Log
+        {
+            inline void Default::startEcoute(sf::Socket::Status & status)
+            {
+                if(status) throw("Erreur lors du démarrage de l'écoute du listener");
+            }
+            inline void Default::coBanni()
+            {
+            }
+            inline void Default::filtrageOk()
+            {
+            }
+            inline void Default::close()
+            {
+            }
+        }
+        namespace Bloque
+        {
+            inline bool NoBloque::isBloque(sf::TcpSocket *, bool)
+            {
+                return false;
+            }
+        }
+
+        namespace Close
+        {
+            inline bool NoClose::boucle(bool running)
+            {
+                return running;
+            }
+
+            inline bool NoClose::boucle(bool, bool running)
+            {
+                return running;
+            }
+
+            inline void NoClose::wait()
+            {
+                return;
+            }
+        }
+    }
+}
+
+#endif // LISTENERADMIN_INLINE
