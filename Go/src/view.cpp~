@@ -15,3 +15,9 @@ LD::GO::view::view(irr::scene::ICameraSceneNode* Camera, irr::IrrlichtDevice* de
   Font = Device ->getGUIEnvironment()->getFont();//font de base
   plateaux.push_back(Plateaux);
 }
+
+LD::GO::view::setFont(const std::string& textureD, irr::u32 x,irr::u32 y, irr::u32 z)
+{
+ Font = Device->getGUIEnvironment()->getFont(textureD);
+ Device->getGUIEnvironment()->getSkin()->setFont(Font);
+}
