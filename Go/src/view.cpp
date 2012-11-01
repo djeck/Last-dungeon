@@ -23,3 +23,20 @@ LD::GO::view::setFont(const std::string& textureD, irr::u32 x,irr::u32 y, irr::u
  environement->getSkin()->setFont(Font);
  environement->getSkin()->setFont(environement->getBuiltInFont(), irr::gui::EGDF_TOOLTIP);
 }
+
+LD::GO::view::setCamera(irr::scene::ICameraSceneNode* Camera)
+{
+  camera = Camera;
+  Device ->getSceneManager()->setActiveCamera(Camera);
+}
+
+LD::GO::view::setControlleur(irr::IrrlichtDevice* device)
+{
+  Device = device;
+}
+
+LD::GO::view::setPositionPlateau(int numPlateau, int x, int y, int z)
+{
+  itPlateaux = plateaux.begin() + numPlateau;
+  (*itPlateaux)->setPosition();
+}

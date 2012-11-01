@@ -21,7 +21,7 @@ namespace LD
 	  @param Camera : la camera
 	  @param device : device
 	  @param nbPlateau : nombre de plateaux desirer */
-	 view(irr::scene::ICameraSceneNode* Camera, irr::IrrlichtDevice* device, int nbPlateau);
+	 view(irr::scene::ICameraSceneNode* Camera, irr::IrrlichtDevice* device, Plateau* Plateaux);
  	 /** @brief defini le font
  	  @param textureD : emplacement de la texture à charger
  	  @param x : x
@@ -30,7 +30,7 @@ namespace LD
  	 void setFont(const std::string& textureD, irr::u32 x,irr::u32 y, irr::u32 z);
  	 /** @brief defini une nouvelle camera
  	  @param camera : nouvelle camera */ 
- 	 void setCamera(irr::scene::ICameraSceneNode* camera);
+ 	 void setCamera(irr::scene::ICameraSceneNode* Camera);
  	 /** @brief defini une device
  	  @param device : device */ 
  	 void setControlleur(irr::IrrlichtDevice* device);
@@ -66,6 +66,7 @@ namespace LD
     irr::scene::ICameraSceneNode* camera;
     irr::IrrlichtDevice* Device;
     std::vector<Plateau*> plateaux;
+    std::vector<Plateau*>::iterator itPlateaux;
     std::vector<pion*> pions;
   };
  }

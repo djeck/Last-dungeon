@@ -21,7 +21,7 @@ namespace LD
 	  @param Camera : la camera
 	  @param device : device
 	  @param nbPlateau : nombre de plateaux desirer */
-	 view(irr::scene::ICameraSceneNode* Camera, irr::IrrlichtDevice* device, int nbPlateau);
+	 view(irr::scene::ICameraSceneNode* Camera, irr::IrrlichtDevice* device, Plateau* Plateaux);
  	 /** @brief defini le font
  	  @param textureD : emplacement de la texture à charger
  	  @param x : x
@@ -30,7 +30,7 @@ namespace LD
  	 void setFont(const std::string& textureD, irr::u32 x,irr::u32 y, irr::u32 z);
  	 /** @brief defini une nouvelle camera
  	  @param camera : nouvelle camera */ 
- 	 void setCamera(irr::scene::ICameraSceneNode* camera);
+ 	 void setCamera(irr::scene::ICameraSceneNode* Camera);
  	 /** @brief defini une device
  	  @param device : device */ 
  	 void setControlleur(irr::IrrlichtDevice* device);
@@ -41,9 +41,13 @@ namespace LD
  	  @param z : z */ 
  	 void setPositionPlateau(int numPlateau, int x, int y, int z);
  	  /** @brief place un pion
-	    @param pion : pion
+	   @param pion : pion
 	   @param socle : socle attribué au pion */
 	  void setPion(Pion* pion);
+	  /** @brief permet l'ajout d'un plateau
+	   @return : int :id dans le vector du plateau ajouter
+	   
+	  int setPlateau(Plateau* Plateau);
 	 /** @brief redefini un socle
 	   @param numPlateau : id du plateau
 	   @param socleModel : socle servent de base pour placer le socle

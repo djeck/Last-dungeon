@@ -26,4 +26,5 @@ int main(void)
     diapo->start();
     jeux.start();
     return 0;
+
 }
